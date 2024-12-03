@@ -1,12 +1,7 @@
 package facebook.pro;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class SeeFriends extends pageLayOut{
     public static JPanel createFriendsPanel() {
