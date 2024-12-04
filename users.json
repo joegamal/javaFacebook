@@ -4,6 +4,23 @@
         "gender":"M",
         "birthDate":"1111-11-11",
         "email":"123",
-        "username":"123"
+        "username":"123",
+        "friends": [
+            {
+                "username":"123"
+            }
+        ]
+    },
+    {
+        "password":"654321",
+        "gender":"M",
+        "birthDate":"1111-11-11",
+        "email":"111",
+        "username":"111",
+        "friends": [
+            {
+                "username":"123"
+            }
+        ]
     }
 ]

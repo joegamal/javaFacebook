@@ -5,11 +5,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+
 import java.io.*;
 import java.util.Iterator;
 
 public class UserManager {
-    private static final String FILE_NAME = "users.json";
+    public static final String FILE_NAME = "users.json";
 
     // Method to register a user
     public static void registerUser(User user) throws IOException {
@@ -28,6 +29,10 @@ public class UserManager {
         } catch (IOException e) {
             throw new IOException("Error saving user data", e);
         }
+    }
+
+    public static void addFriend(Object obj){
+        
     }
 
     // Method to check if a user exists by email
@@ -64,8 +69,12 @@ public class UserManager {
         return false;
     }
 
+   //public static boolean friendExists(String friendName){
+   //     //implementation here.
+   //}
+
     // Helper method to load users from the JSON file
-    private static JSONArray loadUsers() {
+    public static JSONArray loadUsers() {
         try (FileReader reader = new FileReader(FILE_NAME)) {
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(reader);
@@ -78,4 +87,8 @@ public class UserManager {
             return null;
         }
     }
+
+   //public static int findIndexOfCurrentUser(String username, JSONArray array){
+   //     //implementation here.
+   //}
 }

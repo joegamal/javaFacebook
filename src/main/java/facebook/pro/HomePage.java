@@ -54,5 +54,4 @@ public class HomePage extends pageLayOut{
     public HomePage(){
         createHomePagePanel();
     }
-    
 }

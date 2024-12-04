@@ -14,7 +14,7 @@ public class Welcome extends pageLayOut{
         super.cardLayout = new CardLayout();
         super.cardPanel = new JPanel(cardLayout);
 
-        ImageIcon image = new ImageIcon("logo.png");
+        ImageIcon image = new ImageIcon("/home/yusuf-gamal/Projects/Java/got/logo.png");
         frame.setIconImage(image.getImage());
 
 
@@ -30,12 +30,14 @@ public class Welcome extends pageLayOut{
         // Set up the home page panel
         HomePage homePagePanel = new HomePage();
 
+        FreindListShow freindListShow = new FreindListShow();
+
 
          // Set up the additional panels for the Welcone page features
 
         JPanel profilePanel = createSectionPanel("Profile");
         JPanel seePostsPanel = createSectionPanel("See Posts");
-        JPanel friendsPanel = createSectionPanel("Friends");
+        //JPanel friendsPanel = createSectionPanel("Friends");
         JPanel writePostsPanel = createSectionPanel("Write Posts");
 
         cardPanel.add(MainMenuPanel.menupan(), "Main Menu");
@@ -45,7 +47,8 @@ public class Welcome extends pageLayOut{
 
         cardPanel.add(profilePanel, "Profile");
         cardPanel.add(seePostsPanel, "See Posts");
-        cardPanel.add(friendsPanel, "Friends");
+        cardPanel.add(freindListShow.createFriendsListPanel(), "Friend");
+        cardPanel.add(SeeFriends.createFriendsPanel(), "Friends");
         cardPanel.add(writePostsPanel, "Write Posts");
 
 
