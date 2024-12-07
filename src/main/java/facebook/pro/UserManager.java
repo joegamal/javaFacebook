@@ -32,9 +32,9 @@ public class UserManager {
             // Deserialize JSON into a List of User objects
             listOfUsers = mapper.readValue(new File(path), ArrayList.class);
 
-            // Print each user's email
-            //System.out.println("Parsed Users:");
-            //rawList.forEach(obj -> System.out.println(obj.get("username")));
+            System.out.println("Parsed Users:");
+
+            listOfUsers.forEach(obj -> System.out.println(obj.get("username")));
         } catch (Exception e) {
             e.getMessage();
             System.out.println("Error occurred while parsing JSON:");
@@ -68,9 +68,7 @@ public class UserManager {
 
     // Method to validate login credentials
     public static boolean loginUser(String email, String password) {
-        if (listOfUsers.isEmpty()) {
-            return false;
-        }
+
         // Iterate through the array to check for matching credentials
         for (int i = 0; i < listOfUsers.size(); i++) {
             if (email.equals(listOfUsers.get(i).get("email")) && password.equals(listOfUsers.get(i).get("password"))) {
@@ -104,9 +102,9 @@ public class UserManager {
     public static void store () throws IOException{
         jsonDate = mapper.writeValueAsString(listOfUsers);
         try{
-            FileWriter write = new FileWriter("user.json");
+            FileWriter write = new FileWriter("users.json");
             for(int i = 0; i < listOfUsers.size(); i++) {
-                mapper.writeValue(new File("user.json"), listOfUsers.get(i));
+                mapper.writeValue(new File("users.json"), listOfUsers.get(i));
             }
 
         } catch (Exception e) {
