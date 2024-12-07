@@ -1,7 +1,6 @@
 package facebook.pro;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.cliftonlabs.json_simple.JsonObject;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 
 public class SeeFriends extends pageLayOut{
 
-    
+    public static String fName;
 
     public static JPanel createFriendsPanel() {
 
@@ -43,8 +42,8 @@ public class SeeFriends extends pageLayOut{
 
         styleButton(searchButton);
         searchButton.addActionListener(e -> {
-            String fName = friendNameField.getText();
-            searchFriends(fName);
+            fName = friendNameField.getText();
+            UserManager.searchFriends(fName);
         });
         
         JPanel topRightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -58,6 +57,7 @@ public class SeeFriends extends pageLayOut{
 
     public static String Name ;
 
+    /* 
     public static void searchFriends(String usernameToFind){
 
         JSONArray users = UserManager.loadUsers();
@@ -80,7 +80,7 @@ public class SeeFriends extends pageLayOut{
             JOptionPane.showMessageDialog(frame, "user doesnt exist!");
         }
     }   
-    
+    */
 
     public SeeFriends(){
         createFriendsPanel();

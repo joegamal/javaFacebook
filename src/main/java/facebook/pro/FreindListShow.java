@@ -1,65 +1,40 @@
 package facebook.pro;
-
-import javax.swing.*;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
-
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 
+class FreindListShow extends pageLayOut{
 
-public class FreindListShow extends pageLayOut{
-
-    public static String name = SeeFriends.Name;
-   
-    public static JPanel createFriendsListPanel(){
-        
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(Color.WHITE);
+    public static String friendName ;
+    public static JPanel createFriendsListPanel() {
+        JPanel panel = new JPanel(new BorderLayout());
 
         JButton backButton = new JButton("Back to Home Page");
-        backButton.setPreferredSize(new Dimension(150, 170));
+        styleButton(backButton);
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "Home Page"));
-        
-        JLabel friendName = new JLabel("friend's name");
-                
-        JButton chaButton = new JButton("Send Messages");
-        chaButton.setPreferredSize(new Dimension(150, 170));
 
-        JButton addFriendButton = new JButton("Add Friend");
-        addFriendButton.setPreferredSize(new Dimension(150, 170));
+        JButton addfriendButton = new JButton("add friend");
+        styleButton(addfriendButton);
+        addfriendButton.addActionListener(e -> UserManager.addFriend(UserManager.current_user, UserManager.FRIENDNAME));
 
-        chaButton.addActionListener(e -> {
-            //yusuf hassan gui work will be here
-        });
-        
+        JButton chatButton = new JButton("send message");
+        //chatButton.addActionListener();
+        //yusuf hasan work will be here
 
-        addFriendButton.addActionListener(e -> {
-            JSONArray users = UserManager.loadUsers();
-
-            for (Object friendToSearch : users){
-                JSONObject ObjectToSearch = (JSONObject) friendToSearch;
-                JSONArray friends = UserManager.loadUsers();
-
-                
-            }
-        });
+        styleButton(chatButton);
 
 
-        panel.add(backButton);
-        panel.add(friendName);
-        panel.add(chaButton);
-        panel.add(addFriendButton);
-    
+
+        JPanel topRightPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        topRightPanel.add(backButton);
+        topRightPanel.add(chatButton);
+        topRightPanel.add(addfriendButton);
+        panel.add(topRightPanel);
+
         return panel;
     }
-        
 
     public FreindListShow(){
         createFriendsListPanel();

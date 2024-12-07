@@ -1,51 +1,65 @@
 package facebook.pro;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.io.*;
-import java.util.Iterator;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static facebook.pro.pageLayOut.*;
+
 
 public class UserManager {
-    public static final String FILE_NAME = "users.json";
+
+    public static String FRIENDNAME ;
+    public static String current_user;
+    private static final String FILE_PATH = "users.json";
+
+    public static ObjectMapper mapper = new ObjectMapper();
+
+    public static  ArrayList<LinkedHashMap<String, Object>> listOfUsers;
+
+    public static void loadUserFromjsonFile(String path){
+        try {
+            // Read the JSON file content into a string
+            String jsonString = new String(Files.readAllBytes(Paths.get(path)));
+
+            // Print the JSON string for debugging
+            System.out.println("JSON File Content: \n" + jsonString);
+
+            // Deserialize JSON into a List of User objects
+            listOfUsers = mapper.readValue(new File(path), ArrayList.class);
+
+            // Print each user's email
+            //System.out.println("Parsed Users:");
+            //rawList.forEach(obj -> System.out.println(obj.get("username")));
+        } catch (Exception e) {
+            e.getMessage();
+            System.out.println("Error occurred while parsing JSON:");
+        }
+    }
+
 
     // Method to register a user
     public static void registerUser(User user) throws IOException {
-        JSONArray users = loadUsers();
-        if (users == null) {
-            users = new JSONArray();
-        }
-
-        // Add the new user as a JSONObject
-        users.add(user.toJson());
-
-        // Write the updated array back to the file
-        try (FileWriter file = new FileWriter(FILE_NAME)) {
-            file.write(users.toJSONString());
-            file.flush();
-        } catch (IOException e) {
-            throw new IOException("Error saving user data", e);
-        }
+        LinkedHashMap<String, Object> list = new LinkedHashMap<String, Object>();
+        list.put("username", user.username);
+        list.put("birthDate", user.birthDate);
+        list.put("gender", user.gender);
+        list.put("email", user.email);
+        listOfUsers.add(list);
     }
-
-    public static void addFriend(Object obj){
-        
-    }
-
     // Method to check if a user exists by email
     public static boolean userExists(String email) {
-        JSONArray users = loadUsers();
-        if (users == null) {
+        if (listOfUsers.isEmpty()) {
             return false;
         }
-
         // Iterate through the array to check for matching email
-        for (Object obj : users) {
-            JSONObject jsonUser = (JSONObject) obj;
-            if (email.equals(jsonUser.get("email"))) {
+        for (int i = 0; i < listOfUsers.size(); i++) {
+
+            if (email.equals(listOfUsers.get(i).get("email"))) {
                 return true;
             }
         }
@@ -54,41 +68,83 @@ public class UserManager {
 
     // Method to validate login credentials
     public static boolean loginUser(String email, String password) {
-        JSONArray users = loadUsers();
-        if (users == null) {
+        if (listOfUsers.isEmpty()) {
             return false;
         }
-
         // Iterate through the array to check for matching credentials
-        for (Object obj : users) {
-            JSONObject jsonUser = (JSONObject) obj;
-            if (email.equals(jsonUser.get("email")) && password.equals(jsonUser.get("password"))) {
+        for (int i = 0; i < listOfUsers.size(); i++) {
+            if (email.equals(listOfUsers.get(i).get("email")) && password.equals(listOfUsers.get(i).get("password"))) {
+                current_user =  email;
                 return true;
             }
         }
         return false;
     }
 
-   //public static boolean friendExists(String friendName){
-   //     //implementation here.
-   //}
-
     // Helper method to load users from the JSON file
-    public static JSONArray loadUsers() {
-        try (FileReader reader = new FileReader(FILE_NAME)) {
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(reader);
-            return (JSONArray) obj;
-        } catch (FileNotFoundException e) {
-            // File doesn't exist yet; return an empty JSONArray
-            return new JSONArray();
-        } catch (IOException | ParseException e) {
-            System.out.println("Error reading user data.");
-            return null;
+
+    public static boolean searchUsers(String usernameToFind){
+
+        boolean userFound = false;
+        for (int i = 0; i < listOfUsers.size(); i++) {
+            if (usernameToFind.equals(listOfUsers.get(i).get("username"))) {
+                userFound = true;
+            }
+
+        }
+        if(userFound){
+            return true;
+        }else{
+            return false;
         }
     }
 
-   //public static int findIndexOfCurrentUser(String username, JSONArray array){
-   //     //implementation here.
-   //}
+    public static String jsonDate;
+
+    public static void store () throws IOException{
+        jsonDate = mapper.writeValueAsString(listOfUsers);
+        try{
+            FileWriter write = new FileWriter("user.json");
+            for(int i = 0; i < listOfUsers.size(); i++) {
+                mapper.writeValue(new File("user.json"), listOfUsers.get(i));
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+
+    public static void searchFriends(String name){
+        boolean to = false;
+        for(int i = 0; i < listOfUsers.size(); i++){
+            if(name.equals(listOfUsers.get(i).get("username"))) {
+                cardLayout.show(cardPanel, "Friend");
+                to = true;
+                FRIENDNAME  = name;
+            }
+        }
+        if(to == false){
+            JOptionPane.showMessageDialog(frame, "user doesnt exist!");
+        }
+    }
+
+    public static void addFriend(String friendname, String username){
+
+        boolean one = false;
+        int index = 0;
+        for(int i = 0; i < listOfUsers.get(User.friends.size()).size(); i++){
+            if(listOfUsers.get(i).get("username").equals(username) && listOfUsers.get(i).get(User.friends.get(i)).equals(friendname)){
+                JOptionPane.showMessageDialog(frame, "user already a friend!");
+                one = true;
+                index = i;
+            }
+        }
+        if(one == false){
+            listOfUsers.get(index).get(User.friends.add(friendname));
+            JOptionPane.showMessageDialog(frame, "friend added !");
+
+        }
+    }
 }
+
