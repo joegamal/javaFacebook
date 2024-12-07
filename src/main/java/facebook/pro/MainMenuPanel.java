@@ -1,15 +1,7 @@
 package facebook.pro;
+import javax.swing.*;
+import java.awt.*;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class MainMenuPanel extends pageLayOut{
 
