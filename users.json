@@ -1,18 +1,7 @@
-[
-    {
-        "password":"123456",
-        "gender":"M",
-        "birthDate":"1111-11-11",
-        "email":"123",
-        "username":"123",
-        "friends" : ["jo", "ahmed"]
-
-    },
-    {
-        "password":"654321",
-        "gender":"M",
-        "birthDate":"1111-11-11",
-        "email":"111",
-        "username":"111"
-    }
-]
+[ {
+  "username" : "123",
+  "birthDate" : "123",
+  "gender" : "M",
+  "email" : "123",
+  "password" : "123456"
+} ]

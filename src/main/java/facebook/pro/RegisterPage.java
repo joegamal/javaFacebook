@@ -77,7 +77,7 @@ public class RegisterPage extends pageLayOut{
                 JOptionPane.showMessageDialog(frame, "Password must be at least 6 characters.");
             } else {
                 try {
-                    if (UserManager.userExists(email)) {
+                    if (!UserManager.userExists(email)) {
                         JOptionPane.showMessageDialog(frame, "Email already exists.");
                     } else {
                         UserManager.registerUser(new User(email, password, username, gender, birthDate));

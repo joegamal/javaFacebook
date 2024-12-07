@@ -1,8 +1,10 @@
+
 package facebook.pro;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.io.*;
 import java.nio.file.Files;
@@ -15,22 +17,27 @@ public class UserManager {
 
     public static String FRIENDNAME ;
     public static String current_user;
-    private static final String FILE_PATH = "users.json";
 
     public static ObjectMapper mapper = new ObjectMapper();
 
     public static  ArrayList<LinkedHashMap<String, Object>> listOfUsers;
 
+    public static File jsonFile = new File("users.json");
+
     public static void loadUserFromjsonFile(String path){
         try {
             // Read the JSON file content into a string
-            String jsonString = new String(Files.readAllBytes(Paths.get(path)));
+            String jsonString = new String(Files.readAllBytes(Paths.get("users.json")));
 
             // Print the JSON string for debugging
             System.out.println("JSON File Content: \n" + jsonString);
 
-            // Deserialize JSON into a List of User objects
-            listOfUsers = mapper.readValue(new File(path), ArrayList.class);
+            if(!(jsonString == null || jsonString.isEmpty() || jsonString.equals(""))) {
+                // Deserialize JSON into a List of User objects
+                listOfUsers = mapper.readValue(new File(path), ArrayList.class);
+            }else{
+                listOfUsers = new ArrayList<LinkedHashMap<String, Object>>();
+            }
 
             System.out.println("Parsed Users:");
 
@@ -49,37 +56,45 @@ public class UserManager {
         list.put("birthDate", user.birthDate);
         list.put("gender", user.gender);
         list.put("email", user.email);
-        listOfUsers.add(list);
-    }
-    // Method to check if a user exists by email
-    public static boolean userExists(String email) {
-        if (listOfUsers.isEmpty()) {
-            return false;
+        list.put("password", user.password);
+        if(listOfUsers == null){
+            listOfUsers = new ArrayList<LinkedHashMap<String, Object>>();
         }
-        // Iterate through the array to check for matching email
-        for (int i = 0; i < listOfUsers.size(); i++) {
+        listOfUsers.add(list);
+        for(int i = 0; i < listOfUsers.size(); i++){
+            System.out.println(listOfUsers.get(i).get("email"));
+        }
+        UserManager.store();
+        UserManager.loadUserFromjsonFile("users.json");
+    }
+    // Method to check if a user exists by emai
+    public static boolean userExists(String email) {
 
-            if (email.equals(listOfUsers.get(i).get("email"))) {
-                return true;
+        if (!(listOfUsers == null)) {
+            // Iterate through the array to check for matching email
+            for (int i = 0; i < listOfUsers.size(); i++) {
+
+                if (email.equals(listOfUsers.get(i).get("email"))) {
+                    return false;
+                }
             }
         }
-        return false;
+        return true;
     }
 
     // Method to validate login credentials
     public static boolean loginUser(String email, String password) {
-
-        // Iterate through the array to check for matching credentials
-        for (int i = 0; i < listOfUsers.size(); i++) {
-            if (email.equals(listOfUsers.get(i).get("email")) && password.equals(listOfUsers.get(i).get("password"))) {
-                current_user =  email;
-                return true;
+        if(!(listOfUsers == null)) {
+            // Iterate through the array to check for matching credentials
+            for (int i = 0; i < listOfUsers.size(); i++) {
+                if (email.equals(listOfUsers.get(i).get("email")) && password.equals(listOfUsers.get(i).get("password"))) {
+                    current_user = email;
+                    return true;
+                }
             }
         }
         return false;
     }
-
-    // Helper method to load users from the JSON file
 
     public static boolean searchUsers(String usernameToFind){
 
@@ -97,18 +112,31 @@ public class UserManager {
         }
     }
 
-    public static String jsonDate;
-
     public static void store () throws IOException{
-        jsonDate = mapper.writeValueAsString(listOfUsers);
-        try{
-            FileWriter write = new FileWriter("users.json");
-            for(int i = 0; i < listOfUsers.size(); i++) {
-                mapper.writeValue(new File("users.json"), listOfUsers.get(i));
-            }
 
-        } catch (Exception e) {
-            e.getMessage();
+        jsonFile.delete();
+        File jsonFile = new File("users.json");
+        String input = "";
+        if(!(listOfUsers == null))
+            input = listOfUsers.toString();
+        // Convert to valid JSON
+
+        String validJson = input
+                .replace("=", ":") ; // Close quotes for array elements
+        System.out.println("Valid JSON String: \n" + validJson);
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listOfUsers);
+
+
+            // Write to JSON file
+            //File outputFile = new File("output.json");
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("users.json"), listOfUsers);
+
+            System.out.println("Data successfully written to output.json");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -145,4 +173,3 @@ public class UserManager {
         }
     }
 }
-
