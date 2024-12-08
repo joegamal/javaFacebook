@@ -172,4 +172,42 @@ public class UserManager {
 
         }
     }
+
+
+
+
+
+
+    public static void addPost(String content, String privacy) {
+        // Create a new post with a unique numeric ID (4 digits)
+        LinkedHashMap<String, Object> postDetails = new LinkedHashMap<>();
+        postDetails.put("postId", String.format("%04d", (int) (Math.random() * 10000))); // Generate a 4-digit numeric ID
+        postDetails.put("content", content);
+        postDetails.put("privacy", privacy);
+
+        // Find the current user and add the post
+        for (LinkedHashMap<String, Object> user : listOfUsers) {
+            if (user.get("email").equals(current_user)) {
+                ArrayList<LinkedHashMap<String, Object>> posts =
+                        (ArrayList<LinkedHashMap<String, Object>>) user.get("posts");
+
+                if (posts == null) {
+                    posts = new ArrayList<>();
+                    user.put("posts", posts);
+                }
+
+                posts.add(postDetails);
+                break;
+            }
+        }
+
+        // Save the updated data to the file
+        try {
+            store();
+        } catch (IOException e) {
+            System.err.println("Error saving data to file: " + e.getMessage());
+        }
+    }
+
 }
+

@@ -8,6 +8,7 @@ public class User implements Serializable {
     public String username;
     public String gender;
     public String birthDate;
+    public ArrayList<Post> posts;
 
     // Constructor
     public User(String email, String password, String username, String gender, String birthDate) {
@@ -16,7 +17,9 @@ public class User implements Serializable {
         this.username = username;
         this.gender = gender;
         this.birthDate = birthDate;
+        this.posts = new ArrayList<>();
     }
 
     public static ArrayList<String> friends = new ArrayList<String>();
 }
+

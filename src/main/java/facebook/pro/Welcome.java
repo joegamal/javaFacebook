@@ -6,6 +6,7 @@ public class Welcome extends pageLayOut{
 
     
     public Welcome() {
+
         super.frame = new JFrame("facebook");
         super.cardLayout = new CardLayout();
         super.cardPanel = new JPanel(cardLayout);
@@ -34,7 +35,8 @@ public class Welcome extends pageLayOut{
         JPanel profilePanel = createSectionPanel("Profile");
         JPanel seePostsPanel = createSectionPanel("See Posts");
         //JPanel friendsPanel = createSectionPanel("Friends");
-        JPanel writePostsPanel = createSectionPanel("Write Posts");
+        JPanel PostWritePanel = createSectionPanel("PostWrite");
+
 
         cardPanel.add(MainMenuPanel.menupan(), "Main Menu");
         cardPanel.add(RegisterPage.createRegisterPanel(), "Register");
@@ -45,7 +47,8 @@ public class Welcome extends pageLayOut{
         cardPanel.add(seePostsPanel, "See Posts");
         cardPanel.add(freindListShow.createFriendsListPanel(), "Friend");
         cardPanel.add(SeeFriends.createFriendsPanel(), "Friends");
-        cardPanel.add(writePostsPanel, "Write Posts");
+        //cardPanel.add(writePostsPanel, "Write Posts");
+        cardPanel.add(PostPage.createWritePostsPanel(), "PostWrite");
 
 
         // Add the card panel to the frame
