@@ -22,7 +22,7 @@ class FreindListShow extends pageLayOut{
         JButton chatButton = new JButton("send message");
         //chatButton.addActionListener();
         //yusuf hasan work will be here
-
+        chatButton.addActionListener(e->cardLayout.show(cardPanel,"Message"));
         styleButton(chatButton);
 
 

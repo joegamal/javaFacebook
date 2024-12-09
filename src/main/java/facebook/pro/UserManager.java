@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.io.*;
 import java.nio.file.Files;
@@ -30,7 +29,7 @@ public class UserManager {
             String jsonString = new String(Files.readAllBytes(Paths.get("users.json")));
 
             // Print the JSON string for debugging
-            System.out.println("JSON File Content: \n" + jsonString);
+//            System.out.println("JSON File Content: \n" + jsonString);
 
             if(!(jsonString == null || jsonString.isEmpty() || jsonString.equals(""))) {
                 // Deserialize JSON into a List of User objects
@@ -39,9 +38,9 @@ public class UserManager {
                 listOfUsers = new ArrayList<LinkedHashMap<String, Object>>();
             }
 
-            System.out.println("Parsed Users:");
-
-            listOfUsers.forEach(obj -> System.out.println(obj.get("username")));
+//            System.out.println("Parsed Users:");
+//
+//            listOfUsers.forEach(obj -> System.out.println(obj.get("username")));
         } catch (Exception e) {
             e.getMessage();
             System.out.println("Error occurred while parsing JSON:");
@@ -57,6 +56,7 @@ public class UserManager {
         list.put("gender", user.gender);
         list.put("email", user.email);
         list.put("password", user.password);
+        list.put("friends",user.friends);
         if(listOfUsers == null){
             listOfUsers = new ArrayList<LinkedHashMap<String, Object>>();
         }
@@ -81,6 +81,8 @@ public class UserManager {
         }
         return true;
     }
+    //method returns current username
+
 
     // Method to validate login credentials
     public static boolean loginUser(String email, String password) {
@@ -123,7 +125,7 @@ public class UserManager {
 
         String validJson = input
                 .replace("=", ":") ; // Close quotes for array elements
-        System.out.println("Valid JSON String: \n" + validJson);
+//        System.out.println("Valid JSON String: \n" + validJson);
 
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -173,10 +175,57 @@ public class UserManager {
         }
     }
 
+    //messaging part----------------------------------
+    //send message to a friend
+    public static void sendMessage(String message) {
+        LinkedHashMap<String, Object> messageDetails = new LinkedHashMap<>();
+        messageDetails.put("messagessent", message);
+        messageDetails.put("current_Friend", FRIENDNAME);
 
+        for (LinkedHashMap<String, Object> user : listOfUsers) {
+            if (user.get("email").equals(current_user)) {
+                ArrayList<LinkedHashMap<String, Object>> messagesStored = (ArrayList<LinkedHashMap<String, Object>>) user.get("messages");
+                if (messagesStored == null) {
+                    messagesStored = new ArrayList<>();
+                    user.put("messages", messagesStored);
+                }
+                messagesStored.add(messageDetails);
+                break;
+            }
+        }
+        for (LinkedHashMap<String, Object> user2 : listOfUsers)
+        {
+            if (user2.get("username").equals(FRIENDNAME))
+            {
+                ArrayList<LinkedHashMap<String, Object>> messagesStored2 = (ArrayList<LinkedHashMap<String, Object>>) user2.get("messages");
+                if (messagesStored2 == null) {
+                    messagesStored2 = new ArrayList<>();
+                    user2.put("messages", messagesStored2);
+                }
+                messagesStored2.add(messageDetails);
+                break;
+            }
+        }
+        try {
+            store();
+        } catch (IOException e) {
+            System.err.println("Error saving data to file: " + e.getMessage());
+        }
+    }
+    //getpast messages
+    public static ArrayList Getpastmessages()
+    {
+        ArrayList<String>pastmessage=new ArrayList<>();
+        for(LinkedHashMap<String, Object> user : listOfUsers)
+        {
+            if (user.get("email").equals(current_user))
+            {
 
-
-
+            }
+        }
+        return pastmessage;
+    }
+    //end of messaging part------------------------------------
 
     public static void addPost(String content, String privacy) {
         // Create a new post with a unique numeric ID (4 digits)

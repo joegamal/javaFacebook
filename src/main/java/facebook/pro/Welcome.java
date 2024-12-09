@@ -27,6 +27,9 @@ public class Welcome extends pageLayOut{
         // Set up the home page panel
         HomePage homePagePanel = new HomePage();
 
+        //set message panel
+        Messages messagepanel= new Messages();
+
         FreindListShow freindListShow = new FreindListShow();
 
 
@@ -49,6 +52,7 @@ public class Welcome extends pageLayOut{
         cardPanel.add(SeeFriends.createFriendsPanel(), "Friends");
         //cardPanel.add(writePostsPanel, "Write Posts");
         cardPanel.add(PostPage.createWritePostsPanel(), "PostWrite");
+        cardPanel.add(messagepanel.getMessagePan(),"Message");
 
 
         // Add the card panel to the frame

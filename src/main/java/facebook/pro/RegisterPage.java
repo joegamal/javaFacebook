@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class RegisterPage extends pageLayOut{
 
@@ -68,7 +69,6 @@ public class RegisterPage extends pageLayOut{
             String username = usernameField.getText();
             String gender = genderField.getText().toUpperCase();
             String birthDate = birthDateField.getText();
-
             if (email.isEmpty() || password.isEmpty() || username.isEmpty() || gender.isEmpty() || birthDate.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "All fields are required.");
             } else if (!gender.equals("M") && !gender.equals("F")) {
