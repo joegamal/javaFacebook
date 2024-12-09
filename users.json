@@ -3,5 +3,17 @@
   "birthDate" : "123",
   "gender" : "M",
   "email" : "123",
-  "password" : "123456"
+  "password" : "123456",
+  "friends" : [ {
+    "friendname" : "147"
+  } ]
+}, {
+  "username" : "147",
+  "birthDate" : "147",
+  "gender" : "M",
+  "email" : "147",
+  "password" : "123456",
+  "friends" : [ {
+    "friendname" : "123"
+  } ]
 } ]

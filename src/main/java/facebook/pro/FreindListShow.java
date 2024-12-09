@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.*;
+import java.io.IOException;
+
 
 class FreindListShow extends pageLayOut{
 
@@ -17,12 +19,19 @@ class FreindListShow extends pageLayOut{
 
         JButton addfriendButton = new JButton("add friend");
         styleButton(addfriendButton);
-        addfriendButton.addActionListener(e -> UserManager.addFriend(UserManager.current_user, UserManager.FRIENDNAME));
+        addfriendButton.addActionListener(e -> {
+            try {
+                UserManager.addfreind(SeeFriends.fName);
+                UserManager.store();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         JButton chatButton = new JButton("send message");
         //chatButton.addActionListener();
         //yusuf hasan work will be here
-
+        chatButton.addActionListener(e->cardLayout.show(cardPanel,"Message"));
         styleButton(chatButton);
 
 
