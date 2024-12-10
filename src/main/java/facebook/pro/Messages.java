@@ -65,15 +65,17 @@ public class Messages extends pageLayOut implements ActionListener {
 
     @Override
     public  void actionPerformed(ActionEvent e) {
-        if (e.getSource()==sendbutton)
-        {
+
+        if (e.getSource()==sendbutton) {
+
             String textsent=messagefield.getText();
-            if(textsent.isEmpty())
-            {
+
+            if(textsent.isEmpty()) {
                 JOptionPane.showMessageDialog(null,"No Message Found","text not found",JOptionPane.ERROR_MESSAGE);
             }
             else{
                 JTextArea messagesent=new JTextArea();
+
                 messagesent.setVisible(true);
                 messagesent.setBackground(Color.black);
                 messagesent.setForeground(Color.yellow);
@@ -81,14 +83,18 @@ public class Messages extends pageLayOut implements ActionListener {
                 messagesent.setWrapStyleWord(true);
                 messagesent.setEditable(false);
                 messagesent.setText(textsent);
+
                 elementpanel.setLayout(null);
+
                 messagesent.setBounds(0,150,250,40);
+
                 messagefield.setText("");;
                 elementpanel.add(messagesent);
                 elementpanel.revalidate();
                 elementpanel.repaint();
                 JScrollBar vertical=scroll.getVerticalScrollBar();
                 vertical.setValue(vertical.getMaximum());
+
                 UserManager.sendMessage(textsent);
             }
         }

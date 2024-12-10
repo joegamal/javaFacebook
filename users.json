@@ -5,7 +5,9 @@
   "email" : "123",
   "password" : "123456",
   "friends" : [ {
-    "friendname" : "147"
+    "friendname" : "147",
+    "messaesHewrtie" : [ ],
+    "messaesYouwrtie" : [ "a7a", "a7a" ]
   } ]
 }, {
   "username" : "147",
@@ -14,6 +16,8 @@
   "email" : "147",
   "password" : "123456",
   "friends" : [ {
-    "friendname" : "123"
+    "friendname" : "123",
+    "messaesHewrtie" : [ "a7a", "a7a" ],
+    "messaesYouwrtie" : [ ]
   } ]
 } ]

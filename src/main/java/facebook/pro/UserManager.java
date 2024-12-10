@@ -131,8 +131,6 @@ public class UserManager {
         try {
             String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listOfUsers);
 
-
-
             mapper.writerWithDefaultPrettyPrinter().writeValue(new File("users.json"), listOfUsers);
 
             System.out.println("Data successfully written to output.json");
@@ -159,64 +157,69 @@ public class UserManager {
     //messaging part----------------------------------
     //send message to a friend
     public static void sendMessage(String message) {
-        LinkedHashMap<String, Object> messageDetails = new LinkedHashMap<>();
-        messageDetails.put("messagessent", message);
-        messageDetails.put("current_Friend", FRIENDNAME);
+        for(LinkedHashMap<String, Object> users : listOfUsers) {
 
-        for (LinkedHashMap<String, Object> user : listOfUsers) {
-            if (user.get("email").equals(current_user)) {
-                ArrayList<LinkedHashMap<String, Object>> messagesStored = (ArrayList<LinkedHashMap<String, Object>>) user.get("messages");
-                if (messagesStored == null) {
-                    messagesStored = new ArrayList<>();
-                    user.put("messages", messagesStored);
+            if (current_user.equals(users.get("username"))) {
+                ArrayList<LinkedHashMap<String, Object>> friends = (ArrayList<LinkedHashMap<String, Object>>) users.get("friends");
+
+                for (LinkedHashMap<String, Object> friendInfo : friends) {
+
+                    ArrayList<String> messageContainer = (ArrayList<String>) friendInfo.get("messaesYouwrtie");
+                    messageContainer.add(message);
+                    friendInfo.put("messaesYouwrtie", messageContainer);
+                    messageContainer = null;
                 }
-                messagesStored.add(messageDetails);
-                break;
             }
         }
-        for (LinkedHashMap<String, Object> user2 : listOfUsers)
-        {
-            if (user2.get("username").equals(FRIENDNAME))
-            {
-                ArrayList<LinkedHashMap<String, Object>> messagesStored2 = (ArrayList<LinkedHashMap<String, Object>>) user2.get("messages");
-                if (messagesStored2 == null) {
-                    messagesStored2 = new ArrayList<>();
-                    user2.put("messages", messagesStored2);
+        for(LinkedHashMap<String, Object> users : listOfUsers){
+            if (FRIENDNAME.equals(users.get("username"))) {
+                ArrayList<LinkedHashMap<String, Object>> friends = (ArrayList<LinkedHashMap<String, Object>>) users.get("friends");
+
+                for (LinkedHashMap<String, Object> friendInfo : friends) {
+
+                    ArrayList<String> messageC = (ArrayList<String>) friendInfo.get("messaesHewrtie");
+                    messageC.add(message);
+                    friendInfo.put("messaesHewrtie", messageC);
+                    messageC = null;
                 }
-                messagesStored2.add(messageDetails);
-                break;
             }
         }
+
+
+
         try {
             store();
         } catch (IOException e) {
             System.err.println("Error saving data to file: " + e.getMessage());
         }
-    }
-    //getpast messages
-    public static ArrayList Getpastmessages(){
-        ArrayList<String>pastmessage=new ArrayList<>();
-        for(LinkedHashMap<String, Object> user : listOfUsers)
-        {
-            if (user.get("email").equals(current_user))
-            {
 
-            }
-        }
-        return pastmessage;
+
+
     }
+
 
 
     //end of messaging part------------------------------------
 
 
     public static void addfreind(String fname) throws IOException {
+        FRIENDNAME = fname;
         LinkedHashMap<String, Object> friendDetails = new LinkedHashMap<>();
-        friendDetails.put("friendname", fname); // Generate a 4-digit numeric ID
 
+        ArrayList<String> messaesHewrtie = new ArrayList<>();
+        ArrayList<String> messaesYouwrtie = new ArrayList<>();
+
+
+        friendDetails.put("friendname", fname); // Generate a 4-digit numeric ID
+        friendDetails.put("messaesHewrtie", messaesHewrtie);
+        friendDetails.put("messaesYouwrtie", messaesYouwrtie);
 
         LinkedHashMap<String, Object> friendreplace = new LinkedHashMap<>();
         friendreplace.put("friendname", current_user);
+
+        friendreplace.put("messaesHewrtie", messaesYouwrtie);
+        friendreplace.put("messaesYouwrtie", messaesHewrtie);
+
 
 
         for (LinkedHashMap<String, Object> user : listOfUsers) {
