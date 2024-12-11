@@ -17,8 +17,4 @@ public class SeePosts extends pageLayOut{
 
         return panel;
     }
-
-    public SeePosts(){
-        createSeePostsPanel();
-    }
 }

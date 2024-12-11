@@ -3,7 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Welcome extends pageLayOut{
-
     
     public Welcome() {
         super.frame = new JFrame("facebook");
@@ -44,7 +43,6 @@ public class Welcome extends pageLayOut{
         cardPanel.add(friendsPanel, "Friends");
         cardPanel.add(writePostsPanel, "Write Posts");
 
-
         // Add the card panel to the frame
         frame.add(super.cardPanel);
 
@@ -55,5 +53,6 @@ public class Welcome extends pageLayOut{
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);     
     }
+
 
 }

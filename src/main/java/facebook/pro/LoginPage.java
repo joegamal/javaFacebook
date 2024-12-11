@@ -3,7 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LoginPage extends pageLayOut{
-    
 
     public static JPanel createLoginPanel() {
         JPanel panel = new JPanel();
