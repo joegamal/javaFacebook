@@ -1,1 +1,23 @@
-[{"password":"123456","gender":"M","birthDate":"1111-11-11","email":"123","username":"123"},{"password":"123456","gender":"M","birthDate":"11-11-2011","email":"y","username":"y"}]
+[ {
+  "username" : "123",
+  "birthDate" : "123",
+  "gender" : "M",
+  "email" : "123",
+  "password" : "123456",
+  "friends" : [ {
+    "friendname" : "147",
+    "messaesHewrtie" : [ ],
+    "messaesYouwrtie" : [ "a7a", "a7a" ]
+  } ]
+}, {
+  "username" : "147",
+  "birthDate" : "147",
+  "gender" : "M",
+  "email" : "147",
+  "password" : "123456",
+  "friends" : [ {
+    "friendname" : "123",
+    "messaesHewrtie" : [ "a7a", "a7a" ],
+    "messaesYouwrtie" : [ ]
+  } ]
+} ]

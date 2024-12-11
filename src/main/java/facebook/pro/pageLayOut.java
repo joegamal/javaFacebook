@@ -45,6 +45,10 @@ public class pageLayOut {
         passwordField.setText("");
     }
 
+    public static void clearFields(JTextField friendNameField) {
+        friendNameField.setText("");
+    }
+
     protected JPanel createSectionPanel(String title) {
         JPanel panel = new JPanel(new BorderLayout());  // Use BorderLayout for the full control over components
 

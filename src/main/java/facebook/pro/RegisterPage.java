@@ -1,7 +1,20 @@
 package facebook.pro;
+
 import java.io.IOException;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class RegisterPage extends pageLayOut{
 
@@ -56,7 +69,6 @@ public class RegisterPage extends pageLayOut{
             String username = usernameField.getText();
             String gender = genderField.getText().toUpperCase();
             String birthDate = birthDateField.getText();
-
             if (email.isEmpty() || password.isEmpty() || username.isEmpty() || gender.isEmpty() || birthDate.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "All fields are required.");
             } else if (!gender.equals("M") && !gender.equals("F")) {
@@ -65,7 +77,7 @@ public class RegisterPage extends pageLayOut{
                 JOptionPane.showMessageDialog(frame, "Password must be at least 6 characters.");
             } else {
                 try {
-                    if (UserManager.userExists(email)) {
+                    if (!UserManager.userExists(email)) {
                         JOptionPane.showMessageDialog(frame, "Email already exists.");
                     } else {
                         UserManager.registerUser(new User(email, password, username, gender, birthDate));

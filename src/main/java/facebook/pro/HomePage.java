@@ -30,7 +30,7 @@ public class HomePage extends pageLayOut{
         // Create Write Posts button
         JButton writePostsButton = new JButton("Write Posts");
         styleButton(writePostsButton);
-        writePostsButton.addActionListener(e -> cardLayout.show(cardPanel, "Write Posts"));
+        writePostsButton.addActionListener(e -> cardLayout.show(cardPanel, "PostWrite"));
         panel.add(writePostsButton);
 
         // Create Logout button and place it in the bottom-right corner
@@ -48,5 +48,4 @@ public class HomePage extends pageLayOut{
     public HomePage(){
         createHomePagePanel();
     }
-    
 }
