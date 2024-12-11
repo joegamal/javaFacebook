@@ -3,6 +3,7 @@ package facebook.pro;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.io.*;
@@ -91,12 +92,14 @@ public class UserManager {
             for (int i = 0; i < listOfUsers.size(); i++) {
                 if (email.equals(listOfUsers.get(i).get("email")) && password.equals(listOfUsers.get(i).get("password"))) {
                     current_user = email;
+                    cardPanel.add(SeePosts.createSeePanel(), "See Posts");
                     return true;
                 }
             }
         }
         return false;
     }
+
 
     public static boolean searchUsers(String usernameToFind){
 

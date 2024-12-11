@@ -36,9 +36,10 @@ public class Welcome extends pageLayOut{
          // Set up the additional panels for the Welcone page features
 
         JPanel profilePanel = createSectionPanel("Profile");
-        JPanel seePostsPanel = createSectionPanel("See Posts");
+        //JPanel seePostsPanel = createSectionPanel("See Posts");
         //JPanel friendsPanel = createSectionPanel("Friends");
         JPanel PostWritePanel = createSectionPanel("PostWrite");
+
 
 
         cardPanel.add(MainMenuPanel.menupan(), "Main Menu");
@@ -47,7 +48,7 @@ public class Welcome extends pageLayOut{
         cardPanel.add(HomePage.createHomePagePanel(), "Home Page");
 
         cardPanel.add(profilePanel, "Profile");
-        cardPanel.add(SeePosts.createSeePanel(), "See Posts");
+        //cardPanel.add(SeePosts.createSeePanel(), "See Posts");
         cardPanel.add(freindListShow.createFriendsListPanel(), "Friend");
         cardPanel.add(SeeFriends.createFriendsPanel(), "Friends");
         //cardPanel.add(writePostsPanel, "Write Posts");

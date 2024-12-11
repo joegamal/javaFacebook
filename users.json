@@ -7,28 +7,16 @@
   "friends" : [ {
     "friendname" : "147",
     "messaesHewrtie" : [ ],
-    "messaesYouwrtie" : [ "a7a", "a7a" ]
+    "messaesYouwrtie" : [ ]
   } ],
   "posts" : [ {
-    "postId" : "4214",
-    "content" : "a7a7a",
+    "postId" : "7709",
+    "content" : "123 public",
     "privacy" : "Public"
   }, {
-    "postId" : "6365",
-    "content" : "aaaaa",
+    "postId" : "2536",
+    "content" : "123 private",
     "privacy" : "Friends Only"
-  }, {
-    "postId" : "8106",
-    "content" : "575757",
-    "privacy" : "Public"
-  }, {
-    "postId" : "6727",
-    "content" : "kokookoko",
-    "privacy" : "Public"
-  }, {
-    "postId" : "7291",
-    "content" : "lololololo",
-    "privacy" : "Public"
   } ]
 }, {
   "username" : "147",
@@ -38,7 +26,7 @@
   "password" : "123456",
   "friends" : [ {
     "friendname" : "123",
-    "messaesHewrtie" : [ "a7a", "a7a" ],
+    "messaesHewrtie" : [ ],
     "messaesYouwrtie" : [ ]
   } ]
 } ]

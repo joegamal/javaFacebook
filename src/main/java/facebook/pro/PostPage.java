@@ -49,7 +49,8 @@ public class PostPage extends pageLayOut {
 
             if (!postContent.isEmpty()) {
                 try {
-                    UserManager.addPost(postContent, privacy); // Add the post using UserManager
+                    UserManager.addPost(postContent, privacy);// Add the post using UserManager
+                    UserManager.store();
                     postContentField.setText(""); // Clear the field
                     JOptionPane.showMessageDialog(frame, "Post submitted successfully!");
                 } catch (Exception ex) {

@@ -6,7 +6,7 @@ import java.awt.*;
 public class pageLayOut {
 
     protected static JFrame frame;
-    protected static CardLayout cardLayout;
+    public static CardLayout cardLayout;
     protected static JPanel cardPanel;
     
     public static void styleButton(JButton button) {

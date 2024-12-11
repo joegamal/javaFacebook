@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class SeePosts extends pageLayOut {
-    public static String H="";
 
+    //public static boolean logedIn = false;
     public static JPanel createPostPanel() {
         JPanel postPanel = new JPanel();
         postPanel.setLayout(new BorderLayout());
@@ -16,27 +16,37 @@ public class SeePosts extends pageLayOut {
         JPanel Cpanel = new JPanel();
         Cpanel.setLayout(new BoxLayout(Cpanel, BoxLayout.Y_AXIS));
 
-        if (UserManager.listOfUsers != null) {
-            for (int i = 0; i < UserManager.listOfUsers.size(); i++) {
-                String uname = UserManager.listOfUsers.get(i).get("username").toString();
+        String uname;
 
-                ArrayList<LinkedHashMap<String, Object>> posts =
-                        (ArrayList<LinkedHashMap<String, Object>>) UserManager.listOfUsers.get(i).get("posts");
-                if (posts != null) {
-                    for (LinkedHashMap<String, Object> content : posts) {
-                        String privacy = content.get("privacy").toString();
-                        if(uname.equals(H)){
-                            displayPost(Cpanel, uname, content);
-                        }else if  ("Public".equals(privacy) || uname.equals(H) ) {
-                            displayPost(Cpanel, uname, content);
-                        } else if ("Friends Only".equals(privacy) && areFriends()) {
-                            displayPost(Cpanel, uname, content);
-                        }
+        for (int i = 0; i < UserManager.listOfUsers.size(); i++) {
+
+            //current user to dispaly posta.
+            uname = UserManager.listOfUsers.get(i).get("username").toString();
+
+
+            //friendsList to be sent to the function.
+            ArrayList<LinkedHashMap<String, Object>> friendsList =
+                    (ArrayList<LinkedHashMap<String, Object>>) UserManager.listOfUsers.get(i).get("friends");
+
+            ArrayList<LinkedHashMap<String, Object>> posts =
+                    (ArrayList<LinkedHashMap<String, Object>>) UserManager.listOfUsers.get(i).get("posts");
+
+
+            if (posts != null) {
+                for (LinkedHashMap<String, Object> content : posts) {
+                    String privacy = content.get("privacy").toString();
+                    if (uname.equals(UserManager.current_user)) {
+                        displayPost(Cpanel, uname, content);
+                    } else if ("Public".equals(privacy)) {
+                        displayPost(Cpanel, uname, content);
+                    } else if ("Friends Only".equals(privacy) && areFriends(friendsList, uname)) {
+                        displayPost(Cpanel, uname, content);
                     }
-
                 }
             }
         }
+
+
 
 
 
@@ -47,7 +57,11 @@ public class SeePosts extends pageLayOut {
         return postPanel;
     }
 
-    private static void displayPost(JPanel Cpanel, String uname, LinkedHashMap<String, Object> content) {
+
+
+
+
+    public static void displayPost(JPanel Cpanel, String uname, LinkedHashMap<String, Object> content) {
         String postContent = content.get("content").toString();
 
         // User info panel
@@ -92,21 +106,21 @@ public class SeePosts extends pageLayOut {
 
         Cpanel.add(singlePostPanel);
     }
-    private static boolean areFriends() {
-        for (LinkedHashMap<String, Object> user : UserManager.listOfUsers) {
-            if (H.equals(user.get("username"))) {
-                String PostOwner = user.get("username").toString();
-                ArrayList<LinkedHashMap<String, Object>> friends = (ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
-                if (friends != null) {
-                    for (LinkedHashMap<String, Object> friend : friends) {
-                        if (PostOwner.equals(friend.get("friendname"))) {
-                            return true;
-                        }
+
+
+    public static boolean areFriends(ArrayList<LinkedHashMap<String, Object>> friendsList, String userloop ) {
+        if(UserManager.current_user.equals(userloop)){ return true; }
+        else {
+            if(friendsList != null) {
+                for (LinkedHashMap<String, Object> friend : friendsList) {
+                    if (UserManager.current_user.equals(friend.get("friendname"))) {
+                        return true;
                     }
                 }
             }
 
-        } return false;
+        }
+         return false;
     }
     public static JPanel createSeePanel() {
         JPanel panel = new JPanel();
@@ -116,6 +130,7 @@ public class SeePosts extends pageLayOut {
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "Home Page"));
         panel.add(backButton, BorderLayout.EAST);
         panel.add(createPostPanel(), BorderLayout.CENTER);
+
         return panel;
     }
 }
