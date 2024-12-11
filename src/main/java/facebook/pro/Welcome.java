@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Welcome extends pageLayOut{
+
     
     public Welcome() {
 
@@ -46,7 +47,7 @@ public class Welcome extends pageLayOut{
         cardPanel.add(HomePage.createHomePagePanel(), "Home Page");
 
         cardPanel.add(profilePanel, "Profile");
-        cardPanel.add(seePostsPanel, "See Posts");
+        cardPanel.add(SeePosts.createSeePanel(), "See Posts");
         cardPanel.add(freindListShow.createFriendsListPanel(), "Friend");
         cardPanel.add(SeeFriends.createFriendsPanel(), "Friends");
         //cardPanel.add(writePostsPanel, "Write Posts");

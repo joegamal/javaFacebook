@@ -57,31 +57,6 @@ public class SeeFriends extends pageLayOut{
 
     public static String Name ;
 
-    /* 
-    public static void searchFriends(String usernameToFind){
-
-        JSONArray users = UserManager.loadUsers();
-
-
-        boolean userFound = false;
-        for (Object objectToSearch : users) {
-
-            JSONObject ObjectToSearch = (JSONObject) objectToSearch;
-               
-            if (usernameToFind.equals(ObjectToSearch.get("username"))) {
-                userFound = true;
-                Name = ObjectToSearch.get("username").toString();
-            }
-        }
-        if(userFound){
-            cardLayout.show(cardPanel, "Friend");
-            FreindListShow.createFriendsListPanel().setName("usernameToFind");
-        }else{
-            JOptionPane.showMessageDialog(frame, "user doesnt exist!");
-        }
-    }   
-    */
-
     public SeeFriends(){
         createFriendsPanel();
     }
