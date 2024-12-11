@@ -3,7 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Welcome extends pageLayOut{
-
     
     public Welcome() {
 

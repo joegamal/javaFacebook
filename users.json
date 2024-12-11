@@ -20,4 +20,24 @@
     "messaesHewrtie" : [ "a7a", "a7a" ],
     "messaesYouwrtie" : [ ]
   } ]
+}, {
+  "username" : "y",
+  "birthDate" : "11-11-1111",
+  "gender" : "M",
+  "email" : "y",
+  "password" : "123456",
+  "friends" : null,
+  "posts" : [ {
+    "postId" : "6664",
+    "content" : "kkkkkkkkkkkkkkk",
+    "privacy" : "Friends Only"
+  }, {
+    "postId" : "9054",
+    "content" : "cc",
+    "privacy" : "Public"
+  }, {
+    "postId" : "5551",
+    "content" : "kkkkkkkkkkkkkkk",
+    "privacy" : "Public"
+  } ]
 } ]
