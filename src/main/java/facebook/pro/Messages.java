@@ -95,12 +95,18 @@ public class Messages extends pageLayOut implements ActionListener {
                 JScrollBar vertical=scroll.getVerticalScrollBar();
                 vertical.setValue(vertical.getMaximum());
 
+
+
+
+
+
+
                 UserManager.sendMessage(textsent);
             }
         }
     }
-    public JPanel getMessagePan()
-    {
+
+    public JPanel getMessagePan() {
         return MessagePan();
     }
 }

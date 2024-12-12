@@ -93,10 +93,12 @@ public class UserManager {
                 if (email.equals(listOfUsers.get(i).get("email")) && password.equals(listOfUsers.get(i).get("password"))) {
                     current_user = email;
                     cardPanel.add(SeePosts.createSeePanel(), "See Posts");
+
                     return true;
                 }
             }
         }
+
         return false;
     }
 
@@ -149,13 +151,43 @@ public class UserManager {
             if(name.equals(listOfUsers.get(i).get("username"))) {
                 cardLayout.show(cardPanel, "Friend");
                 to = true;
-                FRIENDNAME  = name;
+                FRIENDNAME = name;
             }
         }
         if(to == false){
             JOptionPane.showMessageDialog(frame, "user doesnt exist!");
         }
     }
+
+
+
+    public static boolean searchFriend(String fname){
+        System.out.println("a7a11");
+        for( LinkedHashMap<String, Object> user : listOfUsers){
+            System.out.println("a7a12");
+            if(listOfUsers != null ){
+                System.out.println("a7a13");
+                if(current_user.equals(user.get("username"))){
+                    System.out.println("a7a14");
+                    ArrayList<LinkedHashMap<String, Object>> friendsList = ( ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
+                    if(friendsList != null) {
+                        System.out.println("a7a15");
+                        for (LinkedHashMap<String, Object> friend : friendsList) {
+                            System.out.println("a7a16");
+                            if (fname.equals(friend.get("friendname"))) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
 
     //messaging part----------------------------------
     //send message to a friend
@@ -259,6 +291,8 @@ public class UserManager {
             }
         }
 
+
+
         // Save the updated data to the file
         try {
             store();
@@ -266,6 +300,9 @@ public class UserManager {
             System.err.println("Error saving data to file: " + e.getMessage());
         }
     }
+
+
+
     public static void addPost(String content, String privacy) {
         // Create a new post with a unique numeric ID (4 digits)
         LinkedHashMap<String, Object> postDetails = new LinkedHashMap<>();
