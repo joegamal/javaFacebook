@@ -8,6 +8,10 @@
     "friendname" : "147",
     "messaesHewrtie" : [ ],
     "messaesYouwrtie" : [ ]
+  }, {
+    "friendname" : "goo",
+    "messaesHewrtie" : [ ],
+    "messaesYouwrtie" : [ ]
   } ],
   "posts" : [ {
     "postId" : "7709",
@@ -28,5 +32,42 @@
     "friendname" : "123",
     "messaesHewrtie" : [ ],
     "messaesYouwrtie" : [ ]
+  }, {
+    "friendname" : "147",
+    "messaesHewrtie" : [ ],
+    "messaesYouwrtie" : [ ]
+  }, {
+    "friendname" : "147",
+    "messaesHewrtie" : [ ],
+    "messaesYouwrtie" : [ ]
+  } ],
+  "posts" : [ {
+    "postId" : "8288",
+    "content" : "oobs",
+    "privacy" : "Public"
+  }, {
+    "postId" : "0085",
+    "content" : "alla akbar",
+    "privacy" : "Friends Only"
+  } ]
+}, {
+  "username" : "goo",
+  "birthDate" : "1111-11-11",
+  "gender" : "M",
+  "email" : "goo",
+  "password" : "123456",
+  "friends" : [ {
+    "friendname" : "123",
+    "messaesHewrtie" : [ ],
+    "messaesYouwrtie" : [ ]
+  } ],
+  "posts" : [ {
+    "postId" : "4819",
+    "content" : "pop",
+    "privacy" : "Friends Only"
+  }, {
+    "postId" : "4948",
+    "content" : "error!",
+    "privacy" : "Public"
   } ]
 } ]

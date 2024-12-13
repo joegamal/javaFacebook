@@ -97,19 +97,21 @@ public class SeePosts extends pageLayOut {
         buttonPanel.add(commentButton);
         buttonPanel.add(tagButton);
 
-        JPanel singlePostPanel = new JPanel(new GridLayout(2, 2, 30, 40));
-        singlePostPanel.setLayout(new BorderLayout());
-        singlePostPanel.add(userInfoPanel, BorderLayout.NORTH);
-        singlePostPanel.add(textArea, BorderLayout.CENTER);
-        singlePostPanel.add(buttonPanel, BorderLayout.SOUTH);
+        JPanel formatPostPanel = new JPanel(new GridLayout(2, 2, 30, 40));
+        formatPostPanel.setLayout(new BorderLayout());
+        formatPostPanel.add(userInfoPanel, BorderLayout.NORTH);
+        formatPostPanel.add(textArea, BorderLayout.CENTER);
+        formatPostPanel.add(buttonPanel, BorderLayout.SOUTH);
 
 
-        Cpanel.add(singlePostPanel);
+        Cpanel.add(formatPostPanel);
     }
 
 
     public static boolean areFriends(ArrayList<LinkedHashMap<String, Object>> friendsList, String userloop ) {
-        if(UserManager.current_user.equals(userloop)){ return true; }
+        if(UserManager.current_user.equals(userloop)){
+            return true;
+        }
         else {
             if(friendsList != null) {
                 for (LinkedHashMap<String, Object> friend : friendsList) {

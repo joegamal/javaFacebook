@@ -11,7 +11,7 @@ public class Welcome extends pageLayOut{
         super.cardLayout = new CardLayout();
         super.cardPanel = new JPanel(cardLayout);
 
-        ImageIcon image = new ImageIcon("/home/yusuf-gamal/Projects/Java/got/logo.png");
+        ImageIcon image = new ImageIcon("logo.png");
         frame.setIconImage(image.getImage());
 
 
