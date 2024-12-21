@@ -5,7 +5,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class SeePosts extends pageLayOut {
+import static facebook.pro.Welcome.cardLayout;
+import static facebook.pro.Welcome.cardPanel;
+
+public class SeePosts implements pageLayOut {
 
     public static String H = "";
 
@@ -98,7 +101,7 @@ public class SeePosts extends pageLayOut {
                 JOptionPane.showMessageDialog(null, "Tag username cannot be empty!");
                 return;
             } else {
-                if (UserManager.searchFriend(tagUser)) {
+                if (UserManager.searchFriend(tagUser, 1)) {
                     reaction.addTag(tagUser);
                     reaction.displayTags();
                 }
@@ -173,7 +176,7 @@ public class SeePosts extends pageLayOut {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JButton backButton = new JButton("Back to Home Page");
-        styleButton(backButton);
+        pageLayOut.styleButton(backButton);
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "Home Page"));
         panel.add(backButton, BorderLayout.EAST);
         panel.add(createPostPanel(), BorderLayout.CENTER);

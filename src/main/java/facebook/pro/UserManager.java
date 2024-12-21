@@ -10,10 +10,11 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static facebook.pro.Welcome.*;
 import static facebook.pro.pageLayOut.*;
 
 
-public class UserManager {
+public abstract class UserManager {
 
     public static String FRIENDNAME ;
     public static String current_user;
@@ -145,7 +146,7 @@ public class UserManager {
     }
 
 
-    public static void searchFriends(String name){
+    public static void searchFriend(String name){
         boolean to = false;
         for(int i = 0; i < listOfUsers.size(); i++){
             if(name.equals(listOfUsers.get(i).get("username"))) {
@@ -161,19 +162,14 @@ public class UserManager {
 
 
 
-    public static boolean searchFriend(String fname){
-        System.out.println("a7a11");
+    public static boolean searchFriend(String fname, int i){
+
         for( LinkedHashMap<String, Object> user : listOfUsers){
-            System.out.println("a7a12");
             if(listOfUsers != null ){
-                System.out.println("a7a13");
                 if(current_user.equals(user.get("username"))){
-                    System.out.println("a7a14");
                     ArrayList<LinkedHashMap<String, Object>> friendsList = ( ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
                     if(friendsList != null) {
-                        System.out.println("a7a15");
                         for (LinkedHashMap<String, Object> friend : friendsList) {
-                            System.out.println("a7a16");
                             if (fname.equals(friend.get("friendname"))) {
                                 return true;
                             }

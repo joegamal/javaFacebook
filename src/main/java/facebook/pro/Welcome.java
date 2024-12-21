@@ -2,14 +2,35 @@ package facebook.pro;
 import javax.swing.*;
 import java.awt.*;
 
-public class Welcome extends pageLayOut{
+public class Welcome implements pageLayOut{
 
+    public static JFrame frame;
+    public static CardLayout cardLayout;
+    public static JPanel cardPanel;
+    private String title;
+
+
+    public static JPanel createSectionPanel(String title) {
+        JPanel panel = new JPanel(new BorderLayout());  // Use BorderLayout for the full control over components
+
+        // Create the button to navigate back to the Home Page
+        JButton backButton = new JButton("Back to Home Page");
+        pageLayOut.styleButton(backButton);
+        backButton.addActionListener(e -> cardLayout.show(cardPanel, "Home Page"));
+
+        // Create a top-right corner panel to hold the back button
+        JPanel topRightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        topRightPanel.add(backButton);  // Add button to the right side of the panel
+        panel.add(topRightPanel, BorderLayout.NORTH);  // Attach the panel to the NORTH of the layout
+
+        return panel;
+    }
 
     public Welcome() {
 
-        super.frame = new JFrame("facebook");
-        super.cardLayout = new CardLayout();
-        super.cardPanel = new JPanel(cardLayout);
+        frame = new JFrame("facebook");
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
 
         ImageIcon image = new ImageIcon("logo.png");
         frame.setIconImage(image.getImage());
@@ -57,7 +78,7 @@ public class Welcome extends pageLayOut{
 
 
         // Add the card panel to the frame
-        frame.add(super.cardPanel);
+        frame.add(cardPanel);
 
         // Set frame properties
         frame.setSize(380, 600);

@@ -3,7 +3,10 @@ import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class HomePage extends pageLayOut{
+import static facebook.pro.Welcome.cardLayout;
+import static facebook.pro.Welcome.cardPanel;
+
+public class HomePage implements pageLayOut{
 
     public static JPanel createHomePagePanel() {
         JPanel panel = new JPanel();
@@ -11,31 +14,31 @@ public class HomePage extends pageLayOut{
 
         // Create Profile button
         JButton profileButton = new JButton("Profile");
-        styleButton(profileButton);
+        pageLayOut.styleButton(profileButton);
         profileButton.addActionListener(e -> cardLayout.show(cardPanel, "Profile"));
         panel.add(profileButton);
 
         // Create See Posts button
         JButton seePostsButton = new JButton("See Posts");
-        styleButton(seePostsButton);
+        pageLayOut.styleButton(seePostsButton);
         seePostsButton.addActionListener(e -> cardLayout.show(cardPanel, "See Posts"));
         panel.add(seePostsButton);
 
         // Create Friends button
         JButton friendsButton = new JButton("Friends");
-        styleButton(friendsButton);
+        pageLayOut.styleButton(friendsButton);
         friendsButton.addActionListener(e -> cardLayout.show(cardPanel, "Friends"));
         panel.add(friendsButton);
 
         // Create Write Posts button
         JButton writePostsButton = new JButton("Write Posts");
-        styleButton(writePostsButton);
+        pageLayOut.styleButton(writePostsButton);
         writePostsButton.addActionListener(e -> cardLayout.show(cardPanel, "PostWrite"));
         panel.add(writePostsButton);
 
         // Create Logout button and place it in the bottom-right corner
         JButton logoutButton = new JButton("Logout");
-        styleButton(logoutButton);
+        pageLayOut.styleButton(logoutButton);
         logoutButton.addActionListener(e -> cardLayout.show(cardPanel, "Main Menu"));
 
         JPanel logoutPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));

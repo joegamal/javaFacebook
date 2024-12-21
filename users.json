@@ -6,20 +6,16 @@
   "password" : "123456",
   "friends" : [ {
     "friendname" : "147",
-    "messaesHewrtie" : [ "5248868" ],
-    "messaesYouwrtie" : [ "a7a", "147159", "145287" ]
-  }, {
-    "friendname" : "159",
     "messaesHewrtie" : [ ],
     "messaesYouwrtie" : [ ]
   } ],
   "posts" : [ {
-    "postId" : "7709",
-    "content" : "123 public",
+    "postId" : "1879",
+    "content" : "a7ap",
     "privacy" : "Public"
   }, {
-    "postId" : "2536",
-    "content" : "123 private",
+    "postId" : "8439",
+    "content" : "a7aprivate",
     "privacy" : "Friends Only"
   } ]
 }, {
@@ -27,17 +23,6 @@
   "birthDate" : "147",
   "gender" : "M",
   "email" : "147",
-  "password" : "123456",
-  "friends" : [ {
-    "friendname" : "123",
-    "messaesHewrtie" : [ "a7a", "147159", "145287" ],
-    "messaesYouwrtie" : [ "5248868" ]
-  } ]
-}, {
-  "username" : "159",
-  "birthDate" : "159",
-  "gender" : "M",
-  "email" : "159",
   "password" : "123456",
   "friends" : [ {
     "friendname" : "123",

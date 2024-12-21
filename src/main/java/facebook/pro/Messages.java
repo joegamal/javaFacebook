@@ -8,30 +8,33 @@ import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class Messages extends pageLayOut implements ActionListener {
+import static facebook.pro.Welcome.cardLayout;
+import static facebook.pro.Welcome.cardPanel;
+
+public class Messages implements pageLayOut , ActionListener {
+
+
     private ArrayList <String> messages;
     JTextField messagefield;
     JButton sendbutton;
     JButton back;
+
     static String Friendname;
     JPanel elementpanel;
     JScrollPane scroll;
     ArrayList<String>messageswithfriend;
 
     private JPanel MessagePan() {
-        //Getting past messages sent
-//        GetPastMessages();
 
-        //Go back button
         back =new JButton("<Back");
-        styleButton(back);
+        pageLayOut.styleButton(back);
         back.setPreferredSize(new Dimension(150,50));
-        back.addActionListener(e->cardLayout.show(cardPanel,"Friend"));
+        back.addActionListener(e-> cardLayout.show(cardPanel,"Friend"));
 
 
         //The send button.
         sendbutton = new JButton("Send>");
-        styleButton(sendbutton);
+        pageLayOut.styleButton(sendbutton);
         sendbutton.setPreferredSize(new Dimension(80,50));
         sendbutton.addActionListener(this);
         //The Field message will be written in.
@@ -61,6 +64,9 @@ public class Messages extends pageLayOut implements ActionListener {
         messagepan.add(inputPanel,BorderLayout.SOUTH);
 
         return messagepan;
+    }
+
+    public void styleTextField(JTextField messagefield) {
     }
 
     @Override

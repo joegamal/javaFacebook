@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Reaction extends pageLayOut {
+import static facebook.pro.Welcome.frame;
+
+public class Reaction implements pageLayOut {
 
     private ArrayList<String> likedUsers; // List of users who liked the post
     private ArrayList<Comment> comments; // List of comments (with replies)
