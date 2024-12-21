@@ -16,6 +16,10 @@
     "friendname" : "goo",
     "messaesHewrtie" : [ ],
     "messaesYouwrtie" : [ ]
+  }, {
+    "friendname" : "000",
+    "messages(He/she)write" : [ "message", "message" ],
+    "messagesYouwrite" : [ "why twice?", "why twice?", "try two" ]
   } ],
   "posts" : [ {
     "postId" : "7709",
@@ -84,5 +88,46 @@
     "postId" : "4948",
     "content" : "error!",
     "privacy" : "Public"
+  } ]
+}, {
+  "username" : "000",
+  "birthDate" : "10-10-2022",
+  "gender" : "M",
+  "email" : "000",
+  "password" : "000000",
+  "friends" : [ {
+    "friendname" : "123",
+    "messages(He/she)write" : [ "why twice?", "why twice?", "try two" ],
+    "messagesYouwrite" : [ "message", "message" ]
+  }, {
+    "friendname" : "122",
+    "messages(He/she)write" : [ "man how are you" ],
+    "messagesYouwrite" : [ "good how are you", "good                                       listen man i eanted to see you" ]
+  }, {
+    "friendname" : "444",
+    "messages(He/she)write" : [ "hi bro", "hi man" ],
+    "messagesYouwrite" : [ ]
+  } ]
+}, {
+  "username" : "122",
+  "birthDate" : "10-10-2000",
+  "gender" : "F",
+  "email" : "122",
+  "password" : "000000",
+  "friends" : [ {
+    "friendname" : "000",
+    "messages(He/she)write" : [ "good how are you", "good                                       listen man i eanted to see you" ],
+    "messagesYouwrite" : [ "man how are you" ]
+  } ]
+}, {
+  "username" : "444",
+  "birthDate" : "4-4-2004",
+  "gender" : "M",
+  "email" : "444",
+  "password" : "444444",
+  "friends" : [ {
+    "friendname" : "000",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ "hi bro", "hi man" ]
   } ]
 } ]

@@ -192,35 +192,78 @@ public class UserManager {
     //messaging part----------------------------------
     //send message to a friend
     public static void sendMessage(String message) {
-        for(LinkedHashMap<String, Object> users : listOfUsers) {
+        String usernameofuser=null;
+        boolean state1=false;
+        boolean state2=false;
+        for (LinkedHashMap<String,Object>user:listOfUsers) {
+            if (user.get("email").equals(current_user))
+            {
 
-            if (current_user.equals(users.get("username"))) {
-                ArrayList<LinkedHashMap<String, Object>> friends = (ArrayList<LinkedHashMap<String, Object>>) users.get("friends");
+                ArrayList<LinkedHashMap<String,Object>>friend=(ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
+                usernameofuser=(String) user.get("username");
 
-                for (LinkedHashMap<String, Object> friendInfo : friends) {
+                for (LinkedHashMap<String,Object>frienddata:friend)
+                {
 
-                    ArrayList<String> messageContainer = (ArrayList<String>) friendInfo.get("messaesYouwrtie");
-                    messageContainer.add(message);
-                    friendInfo.put("messaesYouwrtie", messageContainer);
-                    messageContainer = null;
+                    if (frienddata.get("friendname").equals(FRIENDNAME))
+                    {
+                        ArrayList<String>messageyousend=(ArrayList<String>) frienddata.get("messagesYouwrite");
+                        int index = messageyousend.size() - 1;
+
+                        if (index<0)
+                        {
+                            messageyousend.add(message);
+                            state1 = true;
+                        }
+
+                        else{
+
+                          if (!messageyousend.get(index).equals(message))
+                         {
+                            messageyousend.add(message);
+                            state1 = true;
+                         }
+                        }
+                        break;
+                    }
                 }
+                if (state1==true){break;}
             }
         }
-        for(LinkedHashMap<String, Object> users : listOfUsers){
-            if (FRIENDNAME.equals(users.get("username"))) {
-                ArrayList<LinkedHashMap<String, Object>> friends = (ArrayList<LinkedHashMap<String, Object>>) users.get("friends");
 
-                for (LinkedHashMap<String, Object> friendInfo : friends) {
+        for (LinkedHashMap<String,Object>user:listOfUsers) {
 
-                    ArrayList<String> messageC = (ArrayList<String>) friendInfo.get("messaesHewrtie");
-                    messageC.add(message);
-                    friendInfo.put("messaesHewrtie", messageC);
-                    messageC = null;
+            if (user.get("username").equals(FRIENDNAME))
+            {
+                ArrayList<LinkedHashMap<String,Object>>friend=(ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
+
+                for (LinkedHashMap<String,Object>frienddata:friend)
+                {
+
+                    if (frienddata.get("friendname").equals(usernameofuser)) {
+                        ArrayList<String> messageyousend = (ArrayList<String>) frienddata.get("messages(He/she)write");
+                        int index = messageyousend.size() - 1;
+
+                        if (index<0)
+                        {
+                            messageyousend.add(message);
+                            state2 = true;
+                        }
+
+                        else{
+
+                            if (!messageyousend.get(index).equals(message))
+                            {
+                                messageyousend.add(message);
+                                state2 = true;
+                            }
+                        }
+                        break;
+                    }
                 }
+                if (state2==true){break;}
             }
         }
-
-
 
         try {
             store();
@@ -229,11 +272,7 @@ public class UserManager {
         }
 
 
-
     }
-
-
-
     //end of messaging part------------------------------------
 
 
@@ -246,14 +285,14 @@ public class UserManager {
 
 
         friendDetails.put("friendname", fname); // Generate a 4-digit numeric ID
-        friendDetails.put("messaesHewrtie", messaesHewrtie);
-        friendDetails.put("messaesYouwrtie", messaesYouwrtie);
+        friendDetails.put("messages(He/she)write", messaesHewrtie);
+        friendDetails.put("messagesYouwrite", messaesYouwrtie);
 
         LinkedHashMap<String, Object> friendreplace = new LinkedHashMap<>();
         friendreplace.put("friendname", current_user);
 
-        friendreplace.put("messaesHewrtie", messaesYouwrtie);
-        friendreplace.put("messaesYouwrtie", messaesHewrtie);
+        friendreplace.put("messages(He/she)write", messaesYouwrtie);
+        friendreplace.put("messagesYouwrite", messaesHewrtie);
 
 
 
