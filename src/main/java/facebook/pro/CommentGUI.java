@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CommentGUI {
+public class CommentGUI implements pageLayOut{
     private Reaction reaction;
 
     public CommentGUI(Reaction reaction) {
@@ -15,7 +15,7 @@ public class CommentGUI {
 
     private void createCommentGUI() {
         JFrame frame = new JFrame("Comments and Replies");
-        frame.setSize(600, 400);
+        frame.setSize(382, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 

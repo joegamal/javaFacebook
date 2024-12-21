@@ -3,13 +3,16 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.*;
 
+import static facebook.pro.Welcome.cardLayout;
+import static facebook.pro.Welcome.cardPanel;
 
-public class ProfilePage extends pageLayOut {
+
+public class ProfilePage implements pageLayOut {
      public static JPanel createWritePostsPanel() {
         JPanel panel = new JPanel(new BorderLayout());
 
         JButton backButton = new JButton("Back to Home Page");
-        styleButton(backButton);
+        pageLayOut.styleButton(backButton);
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "Home Page"));
 
         JPanel topRightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));

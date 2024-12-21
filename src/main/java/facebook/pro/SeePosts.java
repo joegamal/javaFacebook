@@ -5,7 +5,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class SeePosts extends pageLayOut {
+import static facebook.pro.Welcome.cardLayout;
+import static facebook.pro.Welcome.cardPanel;
+
+public class SeePosts implements pageLayOut {
 
     public static String H = "";
 
@@ -98,7 +101,9 @@ public class SeePosts extends pageLayOut {
                 JOptionPane.showMessageDialog(null, "Tag username cannot be empty!");
                 return;
             } else {
-                if (UserManager.searchFriend(tagUser)) {
+
+                // overloading
+                if (UserManager.searchFriend(tagUser, 1)) {
                     reaction.addTag(tagUser);
                     reaction.displayTags();
                 }
@@ -151,29 +156,11 @@ public class SeePosts extends pageLayOut {
     return false;
 }
 
-
-    //private static boolean areFriends(String friendUsername) {
-      //  for (LinkedHashMap<String, Object> user : UserManager.listOfUsers) {
-        //    if (H.equals(user.get("username"))) {
-          //      ArrayList<LinkedHashMap<String, Object>> friends =
-            //            (ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
-            //    if (friends != null) {
-              //      for (LinkedHashMap<String, Object> friend : friends) {
-                //        if (friendUsername.equals(friend.get("friendname"))) {
-                  //          return true;
-                    //    }
-                //    }
-              //  }
-        //    }
-      //  }
-       // return false;
-    //}
-
     public static JPanel createSeePanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JButton backButton = new JButton("Back to Home Page");
-        styleButton(backButton);
+        pageLayOut.styleButton(backButton);
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "Home Page"));
         panel.add(backButton, BorderLayout.EAST);
         panel.add(createPostPanel(), BorderLayout.CENTER);

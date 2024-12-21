@@ -6,19 +6,22 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.io.IOException;
 
+import static facebook.pro.Welcome.cardLayout;
+import static facebook.pro.Welcome.cardPanel;
 
-class FreindListShow extends pageLayOut{
+
+class FreindListShow implements pageLayOut{
 
     public static String friendName ;
     public static JPanel createFriendsListPanel() {
         JPanel panel = new JPanel(new BorderLayout());
 
         JButton backButton = new JButton("Back to Home Page");
-        styleButton(backButton);
+        pageLayOut.styleButton(backButton);
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "Home Page"));
 
         JButton addfriendButton = new JButton("add friend");
-        styleButton(addfriendButton);
+        pageLayOut.styleButton(addfriendButton);
         addfriendButton.addActionListener(e -> {
             try {
                 UserManager.addfreind(SeeFriends.fName);
@@ -32,7 +35,7 @@ class FreindListShow extends pageLayOut{
         //chatButton.addActionListener();
         //yusuf hasan work will be here
         chatButton.addActionListener(e->cardLayout.show(cardPanel,"Message"));
-        styleButton(chatButton);
+        pageLayOut.styleButton(chatButton);
 
 
 

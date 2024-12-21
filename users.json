@@ -6,14 +6,6 @@
   "password" : "123456",
   "friends" : [ {
     "friendname" : "147",
-    "messaesHewrtie" : [ "5248868" ],
-    "messaesYouwrtie" : [ "a7a", "147159", "145287" ]
-  }, {
-    "friendname" : "159",
-    "messaesHewrtie" : [ ],
-    "messaesYouwrtie" : [ ]
-  }, {
-    "friendname" : "goo",
     "messaesHewrtie" : [ ],
     "messaesYouwrtie" : [ ]
   }, {
@@ -22,12 +14,12 @@
     "messagesYouwrite" : [ "why twice?", "why twice?", "try two" ]
   } ],
   "posts" : [ {
-    "postId" : "7709",
-    "content" : "123 public",
+    "postId" : "1879",
+    "content" : "a7ap",
     "privacy" : "Public"
   }, {
-    "postId" : "2536",
-    "content" : "123 private",
+    "postId" : "8439",
+    "content" : "a7aprivate",
     "privacy" : "Friends Only"
   } ]
 }, {
@@ -38,56 +30,8 @@
   "password" : "123456",
   "friends" : [ {
     "friendname" : "123",
-    "messaesHewrtie" : [ "a7a", "147159", "145287" ],
-    "messaesYouwrtie" : [ "5248868" ]
-  } ]
-}, {
-  "username" : "159",
-  "birthDate" : "159",
-  "gender" : "M",
-  "email" : "159",
-  "password" : "123456",
-  "friends" : [ {
-    "friendname" : "123",
     "messaesHewrtie" : [ ],
     "messaesYouwrtie" : [ ]
-  }, {
-    "friendname" : "147",
-    "messaesHewrtie" : [ ],
-    "messaesYouwrtie" : [ ]
-  }, {
-    "friendname" : "147",
-    "messaesHewrtie" : [ ],
-    "messaesYouwrtie" : [ ]
-  } ],
-  "posts" : [ {
-    "postId" : "8288",
-    "content" : "oobs",
-    "privacy" : "Public"
-  }, {
-    "postId" : "0085",
-    "content" : "alla akbar",
-    "privacy" : "Friends Only"
-  } ]
-}, {
-  "username" : "goo",
-  "birthDate" : "1111-11-11",
-  "gender" : "M",
-  "email" : "goo",
-  "password" : "123456",
-  "friends" : [ {
-    "friendname" : "123",
-    "messaesHewrtie" : [ ],
-    "messaesYouwrtie" : [ ]
-  } ],
-  "posts" : [ {
-    "postId" : "4819",
-    "content" : "pop",
-    "privacy" : "Friends Only"
-  }, {
-    "postId" : "4948",
-    "content" : "error!",
-    "privacy" : "Public"
   } ]
 }, {
   "username" : "000",

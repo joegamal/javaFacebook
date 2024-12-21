@@ -8,7 +8,10 @@ import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class Messages extends pageLayOut implements ActionListener {
+import static facebook.pro.Welcome.cardLayout;
+import static facebook.pro.Welcome.cardPanel;
+
+public class Messages implements pageLayOut, ActionListener {
     JTextField messagefield;
     JButton sendbutton;
     JButton showbutton;
@@ -77,7 +80,7 @@ public class Messages extends pageLayOut implements ActionListener {
 
         //Go back button
         back = new JButton("<Back");
-        styleButton(back);
+        pageLayOut.styleButton(back);
         back.setPreferredSize(new Dimension(150, 30));
         back.addActionListener(e ->
         {cardLayout.show(cardPanel, "Friend");
@@ -85,13 +88,13 @@ public class Messages extends pageLayOut implements ActionListener {
 
         //show past messages Button
         showbutton=new JButton("Show Past Messages");
-        styleButton(showbutton);
+        pageLayOut.styleButton(showbutton);
         showbutton.setPreferredSize(new Dimension(150,50));
         showbutton.addActionListener(this);
 
         //The send button.
         sendbutton = new JButton("Send>");
-        styleButton(sendbutton);
+        pageLayOut.styleButton(sendbutton);
         sendbutton.setPreferredSize(new Dimension(80, 50));
         sendbutton.addActionListener(this);
 
@@ -120,6 +123,9 @@ public class Messages extends pageLayOut implements ActionListener {
         messagepan.add(botpanel, BorderLayout.SOUTH);
         messagepan.add(toppanel, BorderLayout.NORTH);
         return messagepan;
+    }
+
+    public void styleTextField(JTextField messagefield) {
     }
 
     @Override

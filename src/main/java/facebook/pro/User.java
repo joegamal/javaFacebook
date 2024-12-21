@@ -1,8 +1,7 @@
 package facebook.pro;
-import java.io.IOException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class User implements Serializable {
     public String email;

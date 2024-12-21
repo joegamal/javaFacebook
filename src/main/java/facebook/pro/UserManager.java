@@ -10,10 +10,11 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static facebook.pro.Welcome.*;
 import static facebook.pro.pageLayOut.*;
 
 
-public class UserManager {
+public abstract class UserManager {
 
     public static String FRIENDNAME ;
     public static String current_user;
@@ -29,8 +30,6 @@ public class UserManager {
             // Read the JSON file content into a string
             String jsonString = new String(Files.readAllBytes(Paths.get("users.json")));
 
-            // Print the JSON string for debugging
-//            System.out.println("JSON File Content: \n" + jsonString);
 
             if(!(jsonString == null || jsonString.isEmpty() || jsonString.equals(""))) {
                 // Deserialize JSON into a List of User objects
@@ -39,15 +38,12 @@ public class UserManager {
                 listOfUsers = new ArrayList<LinkedHashMap<String, Object>>();
             }
 
-//            System.out.println("Parsed Users:");
-//
-//            listOfUsers.forEach(obj -> System.out.println(obj.get("username")));
+
         } catch (Exception e) {
             e.getMessage();
             System.out.println("Error occurred while parsing JSON:");
         }
     }
-
 
     // Method to register a user
     public static void registerUser(User user) throws IOException {
@@ -84,7 +80,6 @@ public class UserManager {
     }
     //method returns current username
 
-
     // Method to validate login credentials
     public static boolean loginUser(String email, String password) {
         if(!(listOfUsers == null)) {
@@ -100,23 +95,6 @@ public class UserManager {
         }
 
         return false;
-    }
-
-
-    public static boolean searchUsers(String usernameToFind){
-
-        boolean userFound = false;
-        for (int i = 0; i < listOfUsers.size(); i++) {
-            if (usernameToFind.equals(listOfUsers.get(i).get("username"))) {
-                userFound = true;
-            }
-
-        }
-        if(userFound){
-            return true;
-        }else{
-            return false;
-        }
     }
 
     public static void store () throws IOException{
@@ -144,8 +122,8 @@ public class UserManager {
         }
     }
 
-
-    public static void searchFriends(String name){
+// overloading
+    public static void searchFriend(String name){
         boolean to = false;
         for(int i = 0; i < listOfUsers.size(); i++){
             if(name.equals(listOfUsers.get(i).get("username"))) {
@@ -159,21 +137,14 @@ public class UserManager {
         }
     }
 
+    public static boolean searchFriend(String fname, int i){
 
-
-    public static boolean searchFriend(String fname){
-        System.out.println("a7a11");
         for( LinkedHashMap<String, Object> user : listOfUsers){
-            System.out.println("a7a12");
             if(listOfUsers != null ){
-                System.out.println("a7a13");
                 if(current_user.equals(user.get("username"))){
-                    System.out.println("a7a14");
                     ArrayList<LinkedHashMap<String, Object>> friendsList = ( ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
                     if(friendsList != null) {
-                        System.out.println("a7a15");
                         for (LinkedHashMap<String, Object> friend : friendsList) {
-                            System.out.println("a7a16");
                             if (fname.equals(friend.get("friendname"))) {
                                 return true;
                             }
@@ -184,10 +155,6 @@ public class UserManager {
         }
         return false;
     }
-
-
-
-
 
     //messaging part----------------------------------
     //send message to a friend
@@ -275,7 +242,6 @@ public class UserManager {
     }
     //end of messaging part------------------------------------
 
-
     public static void addfreind(String fname) throws IOException {
         FRIENDNAME = fname;
         LinkedHashMap<String, Object> friendDetails = new LinkedHashMap<>();
@@ -339,8 +305,6 @@ public class UserManager {
             System.err.println("Error saving data to file: " + e.getMessage());
         }
     }
-
-
 
     public static void addPost(String content, String privacy) {
         // Create a new post with a unique numeric ID (4 digits)

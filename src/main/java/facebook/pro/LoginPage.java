@@ -13,7 +13,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class LoginPage extends pageLayOut{
+import static facebook.pro.Welcome.*;
+
+public class LoginPage implements pageLayOut{
     
 
     public static JPanel createLoginPanel() {
@@ -44,7 +46,7 @@ public class LoginPage extends pageLayOut{
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 120));
 
         JButton loginButton = new JButton("Login");
-        styleButton(loginButton);
+        pageLayOut.styleButton(loginButton);
         loginButton.addActionListener(e -> {
             String email = emailField.getText();
             String password = new String(passwordField.getPassword());
@@ -60,7 +62,7 @@ public class LoginPage extends pageLayOut{
         buttonPanel.add(loginButton);
 
         JButton backButton = new JButton("Back to Main Menu");
-        styleButton(backButton);
+        pageLayOut.styleButton(backButton);
         backButton.addActionListener(e -> {
             clearFields(emailField, passwordField); // Clear fields when navigating back
             cardLayout.show(cardPanel, "Main Menu");
@@ -69,6 +71,12 @@ public class LoginPage extends pageLayOut{
 
         panel.add(buttonPanel);
         return panel;
+    }
+
+    public static void clearFields(JTextField emailField, JPasswordField passwordField) {
+    }
+
+    public static void styleTextField(JTextField emailField) {
     }
 
     public LoginPage(){
