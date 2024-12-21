@@ -16,7 +16,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class RegisterPage extends pageLayOut{
+import static facebook.pro.Welcome.*;
+
+public class RegisterPage implements pageLayOut{
 
     public static JPanel createRegisterPanel() {
         JPanel panel = new JPanel();
@@ -28,7 +30,7 @@ public class RegisterPage extends pageLayOut{
 
         JLabel emailLabel = new JLabel("Email:");
         JTextField emailField = new JTextField(20);
-        styleTextField(emailField);
+        pageLayOut.styleTextField(emailField);
         formPanel.add(emailLabel);
         formPanel.add(emailField);
 
@@ -40,19 +42,19 @@ public class RegisterPage extends pageLayOut{
 
         JLabel usernameLabel = new JLabel("Username:");
         JTextField usernameField = new JTextField(20);
-        styleTextField(usernameField);
+        pageLayOut.styleTextField(usernameField);
         formPanel.add(usernameLabel);
         formPanel.add(usernameField);
 
         JLabel genderLabel = new JLabel("Gender (M/F):");
         JTextField genderField = new JTextField(20);
-        styleTextField(genderField);
+        pageLayOut.styleTextField(genderField);
         formPanel.add(genderLabel);
         formPanel.add(genderField);
 
         JLabel birthDateLabel = new JLabel("Birth Date (yyyy-mm-dd):");
         JTextField birthDateField = new JTextField(20);
-        styleTextField(birthDateField);
+        pageLayOut.styleTextField(birthDateField);
         formPanel.add(birthDateLabel);
         formPanel.add(birthDateField);
 
@@ -62,7 +64,7 @@ public class RegisterPage extends pageLayOut{
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 70));
 
         JButton submitButton = new JButton("Register");
-        styleButton(submitButton);
+        pageLayOut.styleButton(submitButton);
         submitButton.addActionListener(e -> {
             String email = emailField.getText();
             String password = new String(passwordField.getPassword());
@@ -82,7 +84,7 @@ public class RegisterPage extends pageLayOut{
                     } else {
                         UserManager.registerUser(new User(email, password, username, gender, birthDate));
                         JOptionPane.showMessageDialog(frame, "Registration successful!");
-                        clearFields(emailField, passwordField, usernameField, genderField, birthDateField);
+                        //clearFields(emailField, passwordField, usernameField, genderField, birthDateField);
                         cardLayout.show(cardPanel, "Main Menu");
                     }
                 } catch (IOException ex) {
@@ -93,15 +95,18 @@ public class RegisterPage extends pageLayOut{
         buttonPanel.add(submitButton);
 
         JButton backButton = new JButton("Back to Main Menu");
-        styleButton(backButton);
+        pageLayOut.styleButton(backButton);
         backButton.addActionListener(e -> {
-            clearFields(emailField, passwordField, usernameField, genderField, birthDateField);
+           // clearFields(emailField, passwordField, usernameField, genderField, birthDateField);
             cardLayout.show(cardPanel, "Main Menu");
         });
         buttonPanel.add(backButton);
 
         panel.add(buttonPanel);
         return panel;
+    }
+
+    public static void styleTextField(JPasswordField passwordField) {
     }
 
     public RegisterPage(){

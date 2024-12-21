@@ -10,8 +10,6 @@ public class Main {
         if(!(UserManager.listOfUsers == null))
             System.out.println(UserManager.listOfUsers.toString());
         UserManager.store();
-
-
     }
 }
 //finish

@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CommentGUI {
+public class CommentGUI implements pageLayOut{
     private Reaction reaction;
 
     public CommentGUI(Reaction reaction) {
