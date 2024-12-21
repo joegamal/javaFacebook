@@ -21,12 +21,6 @@ public class HomePage extends pageLayOut {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
 
-        // Create Profile button
-        JButton profileButton = new JButton("Profile");
-        styleButton(profileButton);
-        profileButton.addActionListener(e -> cardLayout.show(cardPanel, "Profile"));
-        buttonPanel.add(profileButton);
-
         // Create See Posts button
         JButton seePostsButton = new JButton("See Posts");
         styleButton(seePostsButton);
