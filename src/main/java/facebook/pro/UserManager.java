@@ -163,30 +163,24 @@ public abstract class UserManager {
         boolean state1=false;
         boolean state2=false;
         for (LinkedHashMap<String,Object>user:listOfUsers) {
-            if (user.get("email").equals(current_user))
-            {
+            if (user.get("email").equals(current_user)) {
 
-                ArrayList<LinkedHashMap<String,Object>>friend=(ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
-                usernameofuser=(String) user.get("username");
+                ArrayList<LinkedHashMap<String,Object>> friend =  (ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
+                usernameofuser = (String) user.get("username");
 
-                for (LinkedHashMap<String,Object>frienddata:friend)
-                {
+                for (LinkedHashMap<String,Object> frienddata : friend) {
 
-                    if (frienddata.get("friendname").equals(FRIENDNAME))
-                    {
+                    if (frienddata.get("friendname").equals(FRIENDNAME)) {
                         ArrayList<String>messageyousend=(ArrayList<String>) frienddata.get("messagesYouwrite");
                         int index = messageyousend.size() - 1;
 
-                        if (index<0)
-                        {
+                        if (index<0) {
                             messageyousend.add(message);
                             state1 = true;
                         }
 
                         else{
-
-                          if (!messageyousend.get(index).equals(message))
-                         {
+                          if (!messageyousend.get(index).equals(message)) {
                             messageyousend.add(message);
                             state1 = true;
                          }
@@ -200,27 +194,23 @@ public abstract class UserManager {
 
         for (LinkedHashMap<String,Object>user:listOfUsers) {
 
-            if (user.get("username").equals(FRIENDNAME))
-            {
+            if (user.get("username").equals(FRIENDNAME)) {
                 ArrayList<LinkedHashMap<String,Object>>friend=(ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
 
-                for (LinkedHashMap<String,Object>frienddata:friend)
-                {
+                for (LinkedHashMap<String,Object>frienddata:friend) {
 
                     if (frienddata.get("friendname").equals(usernameofuser)) {
                         ArrayList<String> messageyousend = (ArrayList<String>) frienddata.get("messages(He/she)write");
                         int index = messageyousend.size() - 1;
 
-                        if (index<0)
-                        {
+                        if (index<0) {
                             messageyousend.add(message);
                             state2 = true;
                         }
 
                         else{
 
-                            if (!messageyousend.get(index).equals(message))
-                            {
+                            if (!messageyousend.get(index).equals(message)) {
                                 messageyousend.add(message);
                                 state2 = true;
                             }
