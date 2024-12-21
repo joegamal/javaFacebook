@@ -2,8 +2,11 @@ package facebook.pro;
 import javax.swing.*;
 import java.awt.*;
 
+import static facebook.pro.Welcome.cardLayout;
+import static facebook.pro.Welcome.cardPanel;
 
-public class MainMenuPanel extends pageLayOut{
+
+public class MainMenuPanel implements pageLayOut{
 
     public static JPanel menupan(){
         JPanel panel = new JPanel();
@@ -20,17 +23,17 @@ public class MainMenuPanel extends pageLayOut{
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
         
         JButton registerButton = new JButton("Register");
-        styleButton(registerButton);
+        pageLayOut.styleButton(registerButton);
         registerButton.addActionListener(e -> cardLayout.show(cardPanel, "Register"));
         buttonPanel.add(registerButton);
         
         JButton loginButton = new JButton("Login");
-        styleButton(loginButton);
+        pageLayOut.styleButton(loginButton);
         loginButton.addActionListener(e -> cardLayout.show(cardPanel, "Login"));
         buttonPanel.add(loginButton);
         
         JButton exitButton = new JButton("Exit");
-        styleButton(exitButton);
+        pageLayOut.styleButton(exitButton);
         exitButton.addActionListener(e -> System.exit(0));
         buttonPanel.add(exitButton);
         

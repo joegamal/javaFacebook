@@ -7,28 +7,20 @@
   "friends" : [ {
     "friendname" : "147",
     "messaesHewrtie" : [ ],
-    "messaesYouwrtie" : [ "a7a", "a7a" ]
+    "messaesYouwrtie" : [ ]
+  }, {
+    "friendname" : "000",
+    "messages(He/she)write" : [ "message", "message" ],
+    "messagesYouwrite" : [ "why twice?", "why twice?", "try two" ]
   } ],
   "posts" : [ {
-    "postId" : "4214",
-    "content" : "a7a7a",
+    "postId" : "1879",
+    "content" : "a7ap",
     "privacy" : "Public"
   }, {
-    "postId" : "6365",
-    "content" : "aaaaa",
+    "postId" : "8439",
+    "content" : "a7aprivate",
     "privacy" : "Friends Only"
-  }, {
-    "postId" : "8106",
-    "content" : "575757",
-    "privacy" : "Public"
-  }, {
-    "postId" : "6727",
-    "content" : "kokookoko",
-    "privacy" : "Public"
-  }, {
-    "postId" : "7291",
-    "content" : "lololololo",
-    "privacy" : "Public"
   } ]
 }, {
   "username" : "147",
@@ -38,27 +30,48 @@
   "password" : "123456",
   "friends" : [ {
     "friendname" : "123",
-    "messaesHewrtie" : [ "a7a", "a7a" ],
+    "messaesHewrtie" : [ ],
     "messaesYouwrtie" : [ ]
   } ]
 }, {
-  "username" : "y",
-  "birthDate" : "11-11-1111",
+  "username" : "000",
+  "birthDate" : "10-10-2022",
   "gender" : "M",
-  "email" : "y",
-  "password" : "123456",
-  "friends" : null,
-  "posts" : [ {
-    "postId" : "6664",
-    "content" : "kkkkkkkkkkkkkkk",
-    "privacy" : "Friends Only"
+  "email" : "000",
+  "password" : "000000",
+  "friends" : [ {
+    "friendname" : "123",
+    "messages(He/she)write" : [ "why twice?", "why twice?", "try two" ],
+    "messagesYouwrite" : [ "message", "message" ]
   }, {
-    "postId" : "9054",
-    "content" : "cc",
-    "privacy" : "Public"
+    "friendname" : "122",
+    "messages(He/she)write" : [ "man how are you" ],
+    "messagesYouwrite" : [ "good how are you", "good                                       listen man i eanted to see you" ]
   }, {
-    "postId" : "5551",
-    "content" : "kkkkkkkkkkkkkkk",
-    "privacy" : "Public"
+    "friendname" : "444",
+    "messages(He/she)write" : [ "hi bro", "hi man" ],
+    "messagesYouwrite" : [ ]
+  } ]
+}, {
+  "username" : "122",
+  "birthDate" : "10-10-2000",
+  "gender" : "F",
+  "email" : "122",
+  "password" : "000000",
+  "friends" : [ {
+    "friendname" : "000",
+    "messages(He/she)write" : [ "good how are you", "good                                       listen man i eanted to see you" ],
+    "messagesYouwrite" : [ "man how are you" ]
+  } ]
+}, {
+  "username" : "444",
+  "birthDate" : "4-4-2004",
+  "gender" : "M",
+  "email" : "444",
+  "password" : "444444",
+  "friends" : [ {
+    "friendname" : "000",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ "hi bro", "hi man" ]
   } ]
 } ]

@@ -3,16 +3,18 @@ package facebook.pro;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static facebook.pro.Welcome.*;
 import static facebook.pro.pageLayOut.*;
 
 
-public class UserManager {
+public abstract class UserManager {
 
     public static String FRIENDNAME ;
     public static String current_user;
@@ -28,8 +30,6 @@ public class UserManager {
             // Read the JSON file content into a string
             String jsonString = new String(Files.readAllBytes(Paths.get("users.json")));
 
-            // Print the JSON string for debugging
-//            System.out.println("JSON File Content: \n" + jsonString);
 
             if(!(jsonString == null || jsonString.isEmpty() || jsonString.equals(""))) {
                 // Deserialize JSON into a List of User objects
@@ -38,15 +38,12 @@ public class UserManager {
                 listOfUsers = new ArrayList<LinkedHashMap<String, Object>>();
             }
 
-//            System.out.println("Parsed Users:");
-//
-//            listOfUsers.forEach(obj -> System.out.println(obj.get("username")));
+
         } catch (Exception e) {
             e.getMessage();
             System.out.println("Error occurred while parsing JSON:");
         }
     }
-
 
     // Method to register a user
     public static void registerUser(User user) throws IOException {
@@ -83,7 +80,6 @@ public class UserManager {
     }
     //method returns current username
 
-
     // Method to validate login credentials
     public static boolean loginUser(String email, String password) {
         if(!(listOfUsers == null)) {
@@ -91,27 +87,14 @@ public class UserManager {
             for (int i = 0; i < listOfUsers.size(); i++) {
                 if (email.equals(listOfUsers.get(i).get("email")) && password.equals(listOfUsers.get(i).get("password"))) {
                     current_user = email;
+                    cardPanel.add(SeePosts.createSeePanel(), "See Posts");
+
                     return true;
                 }
             }
         }
+
         return false;
-    }
-
-    public static boolean searchUsers(String usernameToFind){
-
-        boolean userFound = false;
-        for (int i = 0; i < listOfUsers.size(); i++) {
-            if (usernameToFind.equals(listOfUsers.get(i).get("username"))) {
-                userFound = true;
-            }
-
-        }
-        if(userFound){
-            return true;
-        }else{
-            return false;
-        }
     }
 
     public static void store () throws IOException{
@@ -139,14 +122,14 @@ public class UserManager {
         }
     }
 
-
-    public static void searchFriends(String name){
+// overloading
+    public static void searchFriend(String name){
         boolean to = false;
         for(int i = 0; i < listOfUsers.size(); i++){
             if(name.equals(listOfUsers.get(i).get("username"))) {
                 cardLayout.show(cardPanel, "Friend");
                 to = true;
-                FRIENDNAME  = name;
+                FRIENDNAME = name;
             }
         }
         if(to == false){
@@ -154,38 +137,100 @@ public class UserManager {
         }
     }
 
+    public static boolean searchFriend(String fname, int i){
+
+        for( LinkedHashMap<String, Object> user : listOfUsers){
+            if(listOfUsers != null ){
+                if(current_user.equals(user.get("username"))){
+                    ArrayList<LinkedHashMap<String, Object>> friendsList = ( ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
+                    if(friendsList != null) {
+                        for (LinkedHashMap<String, Object> friend : friendsList) {
+                            if (fname.equals(friend.get("friendname"))) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     //messaging part----------------------------------
     //send message to a friend
     public static void sendMessage(String message) {
-        for(LinkedHashMap<String, Object> users : listOfUsers) {
+        String usernameofuser=null;
+        boolean state1=false;
+        boolean state2=false;
+        for (LinkedHashMap<String,Object>user:listOfUsers) {
+            if (user.get("email").equals(current_user))
+            {
 
-            if (current_user.equals(users.get("username"))) {
-                ArrayList<LinkedHashMap<String, Object>> friends = (ArrayList<LinkedHashMap<String, Object>>) users.get("friends");
+                ArrayList<LinkedHashMap<String,Object>>friend=(ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
+                usernameofuser=(String) user.get("username");
 
-                for (LinkedHashMap<String, Object> friendInfo : friends) {
+                for (LinkedHashMap<String,Object>frienddata:friend)
+                {
 
-                    ArrayList<String> messageContainer = (ArrayList<String>) friendInfo.get("messaesYouwrtie");
-                    messageContainer.add(message);
-                    friendInfo.put("messaesYouwrtie", messageContainer);
-                    messageContainer = null;
+                    if (frienddata.get("friendname").equals(FRIENDNAME))
+                    {
+                        ArrayList<String>messageyousend=(ArrayList<String>) frienddata.get("messagesYouwrite");
+                        int index = messageyousend.size() - 1;
+
+                        if (index<0)
+                        {
+                            messageyousend.add(message);
+                            state1 = true;
+                        }
+
+                        else{
+
+                          if (!messageyousend.get(index).equals(message))
+                         {
+                            messageyousend.add(message);
+                            state1 = true;
+                         }
+                        }
+                        break;
+                    }
                 }
+                if (state1==true){break;}
             }
         }
-        for(LinkedHashMap<String, Object> users : listOfUsers){
-            if (FRIENDNAME.equals(users.get("username"))) {
-                ArrayList<LinkedHashMap<String, Object>> friends = (ArrayList<LinkedHashMap<String, Object>>) users.get("friends");
 
-                for (LinkedHashMap<String, Object> friendInfo : friends) {
+        for (LinkedHashMap<String,Object>user:listOfUsers) {
 
-                    ArrayList<String> messageC = (ArrayList<String>) friendInfo.get("messaesHewrtie");
-                    messageC.add(message);
-                    friendInfo.put("messaesHewrtie", messageC);
-                    messageC = null;
+            if (user.get("username").equals(FRIENDNAME))
+            {
+                ArrayList<LinkedHashMap<String,Object>>friend=(ArrayList<LinkedHashMap<String, Object>>) user.get("friends");
+
+                for (LinkedHashMap<String,Object>frienddata:friend)
+                {
+
+                    if (frienddata.get("friendname").equals(usernameofuser)) {
+                        ArrayList<String> messageyousend = (ArrayList<String>) frienddata.get("messages(He/she)write");
+                        int index = messageyousend.size() - 1;
+
+                        if (index<0)
+                        {
+                            messageyousend.add(message);
+                            state2 = true;
+                        }
+
+                        else{
+
+                            if (!messageyousend.get(index).equals(message))
+                            {
+                                messageyousend.add(message);
+                                state2 = true;
+                            }
+                        }
+                        break;
+                    }
                 }
+                if (state2==true){break;}
             }
         }
-
-
 
         try {
             store();
@@ -194,13 +239,8 @@ public class UserManager {
         }
 
 
-
     }
-
-
-
     //end of messaging part------------------------------------
-
 
     public static void addfreind(String fname) throws IOException {
         FRIENDNAME = fname;
@@ -211,14 +251,14 @@ public class UserManager {
 
 
         friendDetails.put("friendname", fname); // Generate a 4-digit numeric ID
-        friendDetails.put("messaesHewrtie", messaesHewrtie);
-        friendDetails.put("messaesYouwrtie", messaesYouwrtie);
+        friendDetails.put("messages(He/she)write", messaesHewrtie);
+        friendDetails.put("messagesYouwrite", messaesYouwrtie);
 
         LinkedHashMap<String, Object> friendreplace = new LinkedHashMap<>();
         friendreplace.put("friendname", current_user);
 
-        friendreplace.put("messaesHewrtie", messaesYouwrtie);
-        friendreplace.put("messaesYouwrtie", messaesHewrtie);
+        friendreplace.put("messages(He/she)write", messaesYouwrtie);
+        friendreplace.put("messagesYouwrite", messaesHewrtie);
 
 
 
@@ -256,6 +296,8 @@ public class UserManager {
             }
         }
 
+
+
         // Save the updated data to the file
         try {
             store();
@@ -263,6 +305,7 @@ public class UserManager {
             System.err.println("Error saving data to file: " + e.getMessage());
         }
     }
+
     public static void addPost(String content, String privacy) {
         // Create a new post with a unique numeric ID (4 digits)
         LinkedHashMap<String, Object> postDetails = new LinkedHashMap<>();
@@ -296,3 +339,4 @@ public class UserManager {
 
 }
 
+//finish

@@ -3,7 +3,9 @@ package facebook.pro;
 import javax.swing.*;
 import java.awt.*;
 
-public class PostPage extends pageLayOut {
+import static facebook.pro.Welcome.*;
+
+public class PostPage implements pageLayOut {
 
     public static JPanel createWritePostsPanel() {
         JPanel panel = new JPanel();
@@ -12,7 +14,7 @@ public class PostPage extends pageLayOut {
 
         // Back button to return to the Home Page
         JButton backButton = new JButton("Back to Home Page");
-        styleButton(backButton);
+        pageLayOut.styleButton(backButton);
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "Home Page"));
 
         JPanel topRightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -49,7 +51,8 @@ public class PostPage extends pageLayOut {
 
             if (!postContent.isEmpty()) {
                 try {
-                    UserManager.addPost(postContent, privacy); // Add the post using UserManager
+                    UserManager.addPost(postContent, privacy);// Add the post using UserManager
+                    UserManager.store();
                     postContentField.setText(""); // Clear the field
                     JOptionPane.showMessageDialog(frame, "Post submitted successfully!");
                 } catch (Exception ex) {
@@ -65,6 +68,9 @@ public class PostPage extends pageLayOut {
         panel.add(postPanel);
 
         return panel;
+    }
+
+    public static void styleTextField(JTextField postContentField) {
     }
 
     public PostPage() {
