@@ -1,5 +1,4 @@
 package facebook.pro;
-
 import java.io.IOException;
 
 public class Main {

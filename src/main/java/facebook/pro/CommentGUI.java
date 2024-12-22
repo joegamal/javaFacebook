@@ -63,7 +63,7 @@ public class CommentGUI implements pageLayOut{
         commentsPanel.removeAll();
 
         for (int i = 0; i < reaction.getComments().size(); i++) {
-            Reaction.Comment comment = reaction.getComments().get(i);
+            Comment comment = reaction.getComments().get(i);
 
             JPanel commentPanel = new JPanel();
             commentPanel.setLayout(new BoxLayout(commentPanel, BoxLayout.Y_AXIS));
@@ -84,7 +84,7 @@ public class CommentGUI implements pageLayOut{
             commentPanel.add(commentHeaderPanel);
 
             // Display replies for the comment
-            for (Reaction.Comment reply : comment.getReplies()) {
+            for (Comment reply : comment.getReplies()) {
                 JLabel replyLabel = new JLabel("    ↳ " + reply.toString());
                 replyLabel.setFont(new Font("Arial", Font.ITALIC, 12));
                 commentPanel.add(replyLabel);

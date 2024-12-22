@@ -12,6 +12,30 @@
     "friendname" : "000",
     "messages(He/she)write" : [ "message", "message" ],
     "messagesYouwrite" : [ "why twice?", "why twice?", "try two" ]
+  }, {
+    "friendname" : "y",
+    "messages(He/she)write" : [ "hi", "hi 123" ],
+    "messagesYouwrite" : [ "qqq", "Hi y", "what is your name" ]
+  }, {
+    "friendname" : "y",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ ]
+  }, {
+    "friendname" : "y",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ ]
+  }, {
+    "friendname" : "y",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ ]
+  }, {
+    "friendname" : "y",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ ]
+  }, {
+    "friendname" : "159",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ ]
   } ],
   "posts" : [ {
     "postId" : "1879",
@@ -73,5 +97,48 @@
     "friendname" : "000",
     "messages(He/she)write" : [ ],
     "messagesYouwrite" : [ "hi bro", "hi man" ]
+  } ]
+}, {
+  "username" : "y",
+  "birthDate" : "11-11-2000",
+  "gender" : "M",
+  "email" : "y",
+  "password" : "123456",
+  "friends" : [ {
+    "friendname" : "123",
+    "messages(He/she)write" : [ "qqq", "Hi y", "what is your name" ],
+    "messagesYouwrite" : [ "hi", "hi 123" ]
+  }, {
+    "friendname" : "123",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ ]
+  }, {
+    "friendname" : "123",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ ]
+  }, {
+    "friendname" : "123",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ ]
+  }, {
+    "friendname" : "123",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ ]
+  } ],
+  "posts" : [ {
+    "postId" : "6409",
+    "content" : "Hi everybody",
+    "privacy" : "Public"
+  } ]
+}, {
+  "username" : "159",
+  "birthDate" : "159",
+  "gender" : "M",
+  "email" : "159",
+  "password" : "123456",
+  "friends" : [ {
+    "friendname" : "123",
+    "messages(He/she)write" : [ ],
+    "messagesYouwrite" : [ ]
   } ]
 } ]

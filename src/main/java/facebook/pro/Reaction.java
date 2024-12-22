@@ -12,14 +12,14 @@ public class Reaction implements pageLayOut {
     private ArrayList<Comment> comments; // List of comments (with replies)
     private ArrayList<String> tags; // List of tagged usernames
 
-    public ArrayList<Comment> getComments() {
-        return comments;
-    }
-
     public Reaction() {
         this.likedUsers = new ArrayList<>();
         this.comments = new ArrayList<>();
         this.tags = new ArrayList<>();
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
     }
 
     // Function to like the post
@@ -50,14 +50,24 @@ public class Reaction implements pageLayOut {
 
     SeePosts post = new SeePosts();
 
-
-
     // Function to add a comment
     public void addComment(String user, String message) {
         Comment comment = new Comment(user, message);
         comments.add(comment);
         System.out.println("Comment added by " + user + ": " + message);
 
+    }
+
+    // Function to display all comments and their replies
+    public void displayComments() {
+        if (comments.isEmpty()) {
+            System.out.println("No comments yet.");
+        } else {
+            System.out.println("Comments:");
+            for (int i = 0; i < comments.size(); i++) {
+                System.out.println("Comment #" + (i + 1) + " - " + comments.get(i));
+            }
+        }
     }
 
     // Function to add a reply to a specific comment
@@ -72,17 +82,6 @@ public class Reaction implements pageLayOut {
         }
     }
 
-    // Function to display all comments and their replies
-    public void displayComments() {
-        if (comments.isEmpty()) {
-            System.out.println("No comments yet.");
-        } else {
-            System.out.println("Comments:");
-            for (int i = 0; i < comments.size(); i++) {
-                System.out.println("Comment #" + (i + 1) + " - " + comments.get(i));
-            }
-        }
-    }
 
     // Function to tag a user
     public void addTag(String username) {
@@ -103,37 +102,40 @@ public class Reaction implements pageLayOut {
         }
     }
 
+
+
+
     // Inner class for comments and replies
-    public static class Comment {
-        private String user;
-        private String message;
-        private ArrayList<Comment> replies;
-
-        public Comment(String user, String message) {
-            this.user = user;
-            this.message = message;
-            this.replies = new ArrayList<>();
-        }
-
-        public void addReply(Comment reply) {
-            replies.add(reply);
-        }
-
-        @Override
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append(user).append(": ").append(message);
-            if (!replies.isEmpty()) {
-                sb.append("\n  Replies:");
-                for (Comment reply : replies) {
-                    sb.append("\n    ").append(reply);
-                }
-            }
-            return sb.toString();
-        }
-
-        public Iterable<? extends Comment> getReplies() {
-            return replies;
-        }
-    }
+//    public static class Comment {
+//        private String user;
+//        private String message;
+//        private ArrayList<Comment> replies;
+//
+//        public Comment(String user, String message) {
+//            this.user = user;
+//            this.message = message;
+//            this.replies = new ArrayList<>();
+//        }
+//
+//        public void addReply(Comment reply) {
+//            replies.add(reply);
+//        }
+//
+//        @Override
+//        public String toString() {
+//            StringBuilder sb = new StringBuilder();
+//            sb.append(user).append(": ").append(message);
+//            if (!replies.isEmpty()) {
+//                sb.append("\n  Replies:");
+//                for (Comment reply : replies) {
+//                    sb.append("\n    ").append(reply);
+//                }
+//            }
+//            return sb.toString();
+//        }
+//
+//        public Iterable<? extends Comment> getReplies() {
+//            return replies;
+//        }
+//    }
 }
